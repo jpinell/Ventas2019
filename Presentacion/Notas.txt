@@ -1,0 +1,11 @@
+﻿1. Para el Menú instalamos en los paquetes NUGET fontawesome.sharp
+2. Después de Instalar reiniciar sino carga la pestaña en la Caja de Herramientas.
+3. Agregamos un iconButton en la propiedad Dock - Arriba | Ancho 60
+FlatStyle - Flat | FlatAppearance - BorderStyle = 0
+4. En la propiedad FontAwesome - iconChar - elegimos un icono, iconColor, iconSize...
+5. ForeColor, imageAlign - izquierda
+6. TextAlign - MiddleLeft
+7. TextImageRelation - ImageBeforeText
+8. Copiamos el boton varias veces.
+9. Seleccionamos todos los botones y de Padding damos 10 izquierda y 20 derecha.
+
