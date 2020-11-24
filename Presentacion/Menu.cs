@@ -31,6 +31,7 @@ namespace Presentacion
             Text = string.Empty;
             ControlBox = false;
             DoubleBuffered = true;
+            //Maximizar ajustar tamaño de pantalla
             MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             MaximizarPictureBox.BringToFront();
 
