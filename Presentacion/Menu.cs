@@ -12,7 +12,7 @@ using FontAwesome.Sharp;
 
 namespace Presentacion
 {
-    public partial class FormMainMenu : Form
+    public partial class Menu : Form
     {
         /* Declaramos campos de forma privada para almacenar el botón actual
          * y un panel para aplicar un borde izquierdo al botón.
@@ -21,7 +21,7 @@ namespace Presentacion
         private Panel LeftBorderBtn;
         private Form CurrentChildForm;
 
-        public FormMainMenu()
+        public Menu()
         {
             InitializeComponent();
             LeftBorderBtn = new Panel();
@@ -105,7 +105,7 @@ namespace Presentacion
         private void ProductosButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Productos());
+            //OpenChildForm(new Productos());
 
         }
 

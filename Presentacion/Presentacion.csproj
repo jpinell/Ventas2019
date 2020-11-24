@@ -55,12 +55,6 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Productos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Productos.Designer.cs">
-      <DependentUpon>Productos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Menu.resx">
@@ -93,6 +87,16 @@
   <ItemGroup>
     <Content Include="Notas.txt" />
     <None Include="Resources\rebaja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
+      <Project>{fa3f7dd7-a172-4111-9453-816cad393221}</Project>
+      <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocios\CapaNegocios.csproj">
+      <Project>{6113145b-03eb-43a0-a64f-bd8600b87b76}</Project>
+      <Name>CapaNegocios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
