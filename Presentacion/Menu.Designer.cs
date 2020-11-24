@@ -39,15 +39,26 @@ namespace Presentacion
             this.PanelLogo = new System.Windows.Forms.Panel();
             this.btnInicio = new System.Windows.Forms.PictureBox();
             this.PanelTitleBar = new System.Windows.Forms.Panel();
-            this.HijoPictureBox = new FontAwesome.Sharp.IconPictureBox();
+            this.MinimizarPictureBox = new FontAwesome.Sharp.IconPictureBox();
+            this.RestaurarPictureBox = new FontAwesome.Sharp.IconPictureBox();
+            this.MaximizarPictureBox = new FontAwesome.Sharp.IconPictureBox();
+            this.CerrarPictureBox = new FontAwesome.Sharp.IconPictureBox();
             this.LblTituloForm = new System.Windows.Forms.Label();
+            this.HijoPictureBox = new FontAwesome.Sharp.IconPictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelDeskTop = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelMenu.SuspendLayout();
             this.PanelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInicio)).BeginInit();
             this.PanelTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MinimizarPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RestaurarPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaximizarPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HijoPictureBox)).BeginInit();
+            this.PanelDeskTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -63,7 +74,7 @@ namespace Presentacion
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(220, 725);
+            this.PanelMenu.Size = new System.Drawing.Size(220, 520);
             this.PanelMenu.TabIndex = 0;
             // 
             // UsuariosButton
@@ -209,7 +220,7 @@ namespace Presentacion
             // 
             // btnInicio
             // 
-            this.btnInicio.Image = global::Presentacion.Properties.Resources.LogoVentas;
+            this.btnInicio.Image = global::Presentacion.Properties.Resources.rebaja;
             this.btnInicio.Location = new System.Drawing.Point(39, 25);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(132, 77);
@@ -221,14 +232,96 @@ namespace Presentacion
             // PanelTitleBar
             // 
             this.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.PanelTitleBar.Controls.Add(this.MinimizarPictureBox);
+            this.PanelTitleBar.Controls.Add(this.RestaurarPictureBox);
+            this.PanelTitleBar.Controls.Add(this.MaximizarPictureBox);
+            this.PanelTitleBar.Controls.Add(this.CerrarPictureBox);
             this.PanelTitleBar.Controls.Add(this.LblTituloForm);
             this.PanelTitleBar.Controls.Add(this.HijoPictureBox);
             this.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.PanelTitleBar.Name = "PanelTitleBar";
-            this.PanelTitleBar.Size = new System.Drawing.Size(898, 75);
+            this.PanelTitleBar.Size = new System.Drawing.Size(709, 75);
             this.PanelTitleBar.TabIndex = 1;
             this.PanelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitleBar_MouseDown);
+            // 
+            // MinimizarPictureBox
+            // 
+            this.MinimizarPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinimizarPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.MinimizarPictureBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.MinimizarPictureBox.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            this.MinimizarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
+            this.MinimizarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MinimizarPictureBox.IconSize = 24;
+            this.MinimizarPictureBox.Location = new System.Drawing.Point(613, 3);
+            this.MinimizarPictureBox.Name = "MinimizarPictureBox";
+            this.MinimizarPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.MinimizarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.MinimizarPictureBox.TabIndex = 5;
+            this.MinimizarPictureBox.TabStop = false;
+            this.MinimizarPictureBox.Click += new System.EventHandler(this.MinimizarPictureBox_Click);
+            // 
+            // RestaurarPictureBox
+            // 
+            this.RestaurarPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RestaurarPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.RestaurarPictureBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.RestaurarPictureBox.IconChar = FontAwesome.Sharp.IconChar.WindowRestore;
+            this.RestaurarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
+            this.RestaurarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.RestaurarPictureBox.IconSize = 24;
+            this.RestaurarPictureBox.Location = new System.Drawing.Point(643, 3);
+            this.RestaurarPictureBox.Name = "RestaurarPictureBox";
+            this.RestaurarPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.RestaurarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.RestaurarPictureBox.TabIndex = 4;
+            this.RestaurarPictureBox.TabStop = false;
+            this.RestaurarPictureBox.Click += new System.EventHandler(this.RestaurarPictureBox_Click);
+            // 
+            // MaximizarPictureBox
+            // 
+            this.MaximizarPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaximizarPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.MaximizarPictureBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.MaximizarPictureBox.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            this.MaximizarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
+            this.MaximizarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MaximizarPictureBox.IconSize = 24;
+            this.MaximizarPictureBox.Location = new System.Drawing.Point(643, 3);
+            this.MaximizarPictureBox.Name = "MaximizarPictureBox";
+            this.MaximizarPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.MaximizarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.MaximizarPictureBox.TabIndex = 3;
+            this.MaximizarPictureBox.TabStop = false;
+            this.MaximizarPictureBox.Click += new System.EventHandler(this.MaximizarPictureBox_Click);
+            // 
+            // CerrarPictureBox
+            // 
+            this.CerrarPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CerrarPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.CerrarPictureBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.CerrarPictureBox.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
+            this.CerrarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
+            this.CerrarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.CerrarPictureBox.IconSize = 24;
+            this.CerrarPictureBox.Location = new System.Drawing.Point(673, 3);
+            this.CerrarPictureBox.Name = "CerrarPictureBox";
+            this.CerrarPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.CerrarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.CerrarPictureBox.TabIndex = 2;
+            this.CerrarPictureBox.TabStop = false;
+            this.CerrarPictureBox.Click += new System.EventHandler(this.CerrarPictureBox_Click);
+            // 
+            // LblTituloForm
+            // 
+            this.LblTituloForm.AutoSize = true;
+            this.LblTituloForm.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblTituloForm.Location = new System.Drawing.Point(44, 35);
+            this.LblTituloForm.Name = "LblTituloForm";
+            this.LblTituloForm.Size = new System.Drawing.Size(35, 13);
+            this.LblTituloForm.TabIndex = 1;
+            this.LblTituloForm.Text = "Home";
             // 
             // HijoPictureBox
             // 
@@ -243,43 +336,47 @@ namespace Presentacion
             this.HijoPictureBox.TabIndex = 0;
             this.HijoPictureBox.TabStop = false;
             // 
-            // LblTituloForm
-            // 
-            this.LblTituloForm.AutoSize = true;
-            this.LblTituloForm.ForeColor = System.Drawing.Color.Gainsboro;
-            this.LblTituloForm.Location = new System.Drawing.Point(44, 35);
-            this.LblTituloForm.Name = "LblTituloForm";
-            this.LblTituloForm.Size = new System.Drawing.Size(35, 13);
-            this.LblTituloForm.TabIndex = 1;
-            this.LblTituloForm.Text = "Home";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(24)))), ((int)(((byte)(58)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(220, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(898, 6);
+            this.panel1.Size = new System.Drawing.Size(709, 6);
             this.panel1.TabIndex = 2;
             // 
             // PanelDeskTop
             // 
             this.PanelDeskTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.PanelDeskTop.Controls.Add(this.pictureBox1);
             this.PanelDeskTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelDeskTop.Location = new System.Drawing.Point(220, 81);
             this.PanelDeskTop.Name = "PanelDeskTop";
-            this.PanelDeskTop.Size = new System.Drawing.Size(898, 644);
+            this.PanelDeskTop.Size = new System.Drawing.Size(709, 439);
             this.PanelDeskTop.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = global::Presentacion.Properties.Resources.rebaja;
+            this.pictureBox1.Location = new System.Drawing.Point(286, 149);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(132, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 725);
+            this.ClientSize = new System.Drawing.Size(929, 520);
+            this.ControlBox = false;
             this.Controls.Add(this.PanelDeskTop);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PanelTitleBar);
             this.Controls.Add(this.PanelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -288,7 +385,13 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.btnInicio)).EndInit();
             this.PanelTitleBar.ResumeLayout(false);
             this.PanelTitleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MinimizarPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RestaurarPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaximizarPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HijoPictureBox)).EndInit();
+            this.PanelDeskTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -309,6 +412,11 @@ namespace Presentacion
         private System.Windows.Forms.Label LblTituloForm;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel PanelDeskTop;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconPictureBox CerrarPictureBox;
+        private FontAwesome.Sharp.IconPictureBox MaximizarPictureBox;
+        private FontAwesome.Sharp.IconPictureBox RestaurarPictureBox;
+        private FontAwesome.Sharp.IconPictureBox MinimizarPictureBox;
     }
 }
 

@@ -32,6 +32,7 @@ namespace Presentacion
             ControlBox = false;
             DoubleBuffered = true;
             MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            MaximizarPictureBox.BringToFront();
 
         }
 
@@ -135,6 +136,7 @@ namespace Presentacion
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
+            CurrentChildForm.Close();
             Reset();
         }
 
@@ -157,6 +159,28 @@ namespace Presentacion
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void CerrarPictureBox_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void MaximizarPictureBox_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            RestaurarPictureBox.BringToFront();
+        }
+
+        private void RestaurarPictureBox_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            MaximizarPictureBox.BringToFront();
+        }
+
+        private void MinimizarPictureBox_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }
