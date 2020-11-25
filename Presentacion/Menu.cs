@@ -35,6 +35,9 @@ namespace Presentacion
             MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             MaximizarPictureBox.BringToFront();
 
+            this.MaximumSize = SystemInformation.PrimaryMonitorMaximizedWindowSize;
+            //this.WindowState = FormWindowState.Maximized;
+
         }
 
         //Estructura
@@ -74,9 +77,9 @@ namespace Presentacion
         }
         private void DisableButton()
         {
-            if(CurrentBtn != null)
+            if (CurrentBtn != null)
             {
-                CurrentBtn.BackColor = Color.FromArgb(31,30,68);
+                CurrentBtn.BackColor = Color.FromArgb(31, 30, 68);
                 CurrentBtn.ForeColor = Color.Gainsboro;
                 CurrentBtn.TextAlign = ContentAlignment.MiddleLeft;
                 CurrentBtn.IconColor = Color.Gainsboro;
@@ -87,7 +90,7 @@ namespace Presentacion
 
         private void OpenChildForm(Form childForm)
         {
-            if(CurrentChildForm != null)
+            if (CurrentChildForm != null)
             {
                 //Abrir solamente un fommulario
                 CurrentChildForm.Close();
@@ -137,8 +140,12 @@ namespace Presentacion
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            CurrentChildForm.Close();
-            Reset();
+            if (CurrentChildForm != null)
+            {
+                CurrentChildForm.Close();
+                Reset();
+            }
+
         }
 
         private void Reset()
@@ -182,6 +189,11 @@ namespace Presentacion
         private void MinimizarPictureBox_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void SalirButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
