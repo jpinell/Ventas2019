@@ -111,6 +111,7 @@ namespace Presentacion
             // 
             // CerrarPictureBox
             // 
+            this.CerrarPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CerrarPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.CerrarPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CerrarPictureBox.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
@@ -212,6 +213,7 @@ namespace Presentacion
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPresentacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormPresentacion";
             this.Load += new System.EventHandler(this.FormPresentacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PresentacionDataGridView)).EndInit();

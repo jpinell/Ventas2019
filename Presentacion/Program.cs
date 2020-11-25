@@ -13,7 +13,7 @@ namespace Presentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPresentacion());
+            Application.Run(new FormCategorias());
         }
     }
 }

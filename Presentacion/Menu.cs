@@ -103,7 +103,7 @@ namespace Presentacion
         private void ProductosButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            //OpenChildForm(new Productos());
+            OpenChildForm(new FormProductos());
         }
 
         private void ProveedoresButton_Click(object sender, EventArgs e)
