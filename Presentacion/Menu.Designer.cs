@@ -81,6 +81,7 @@ namespace Presentacion
             // 
             // SalirButton
             // 
+            this.SalirButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SalirButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SalirButton.FlatAppearance.BorderSize = 0;
             this.SalirButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,6 +105,7 @@ namespace Presentacion
             // 
             // UsuariosButton
             // 
+            this.UsuariosButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UsuariosButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.UsuariosButton.FlatAppearance.BorderSize = 0;
             this.UsuariosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -126,6 +128,7 @@ namespace Presentacion
             // 
             // KardexButton
             // 
+            this.KardexButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.KardexButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.KardexButton.FlatAppearance.BorderSize = 0;
             this.KardexButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -148,6 +151,7 @@ namespace Presentacion
             // 
             // VentasButton
             // 
+            this.VentasButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.VentasButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.VentasButton.FlatAppearance.BorderSize = 0;
             this.VentasButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -170,6 +174,7 @@ namespace Presentacion
             // 
             // ComprasButton
             // 
+            this.ComprasButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ComprasButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ComprasButton.FlatAppearance.BorderSize = 0;
             this.ComprasButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -192,6 +197,7 @@ namespace Presentacion
             // 
             // ProveedoresButton
             // 
+            this.ProveedoresButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ProveedoresButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ProveedoresButton.FlatAppearance.BorderSize = 0;
             this.ProveedoresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -214,6 +220,7 @@ namespace Presentacion
             // 
             // ProductosButton
             // 
+            this.ProductosButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ProductosButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ProductosButton.FlatAppearance.BorderSize = 0;
             this.ProductosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -245,6 +252,7 @@ namespace Presentacion
             // 
             // btnInicio
             // 
+            this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInicio.Image = global::Presentacion.Properties.Resources.rebaja;
             this.btnInicio.Location = new System.Drawing.Point(39, 25);
             this.btnInicio.Name = "btnInicio";
