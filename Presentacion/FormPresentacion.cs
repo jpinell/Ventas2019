@@ -25,13 +25,14 @@ namespace Presentacion
         private void FormPresentacion_Load(object sender, EventArgs e)
         {
             ListarPresentacion();
+            //Establecer formato personalizado al DataGridView
+            BLFormatoGrid.FormatoGrid(PresentacionDataGridView);
             HabilitarBotones(true);
         }
 
         private void ListarPresentacion()
         {
             PresentacionDataGridView.DataSource = BLPresentacion.GetData();
-            PresentacionDataGridView.Columns[0].Visible = false;
         }
 
         private void CerrarPictureBox_Click(object sender, EventArgs e)

@@ -68,16 +68,12 @@ namespace Presentacion
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PresentacionDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.PresentacionDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.PresentacionDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PresentacionDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.PresentacionDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Empty;
             this.PresentacionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.PresentacionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PresentacionDataGridView.Location = new System.Drawing.Point(12, 112);
@@ -201,6 +197,7 @@ namespace Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(565, 321);
             this.Controls.Add(this.CerrarPictureBox);
             this.Controls.Add(this.CancelarButton);
