@@ -27,7 +27,7 @@ namespace Presentacion
             ListarPresentacion();
             //Establecer formato personalizado al DataGridView
             BLFormatoGrid.FormatoGrid(PresentacionDataGridView);
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
         }
 
         private void ListarPresentacion()
@@ -40,18 +40,10 @@ namespace Presentacion
             Close();
         }
 
-        private void HabilitarBotones(bool activo)
-        {
-            //ACTIVA O DESACTIVA LOS BOTONES
-            GuardarButton.Enabled = activo;
-            ActualizarButton.Enabled = !activo;
-            EliminarButton.Enabled = !activo;
-        }
-
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             errorProvider1.Dispose(); //QUITAR EL ICONO DEL ERROR!!!
         }
 
@@ -94,7 +86,7 @@ namespace Presentacion
             vidPresentacion = (int)PresentacionDataGridView.CurrentRow.Cells[0].Value;
             DescripcionTextBox.Text = PresentacionDataGridView.CurrentRow.Cells[1].Value.ToString();
 
-            HabilitarBotones(false);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
         }
 
         private void ActualizarButton_Click(object sender, EventArgs e)
@@ -109,7 +101,7 @@ namespace Presentacion
             BLPresentacion.UpdatePresentacion(presentacion);
 
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             ListarPresentacion();
         }
 
@@ -122,14 +114,14 @@ namespace Presentacion
             if (rta == DialogResult.No)
             {
                 LimpiarCajas();
-                HabilitarBotones(true);
+                BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
                 return;
             }
 
             BLPresentacion.DeletePresentacion(vidPresentacion);
 
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             ListarPresentacion();
         }
     }

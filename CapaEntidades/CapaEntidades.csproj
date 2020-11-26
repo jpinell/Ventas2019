@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ENTCategoria.cs" />
+    <Compile Include="ENTKardex.cs" />
     <Compile Include="ENTPresentacion.cs" />
     <Compile Include="ENTProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
