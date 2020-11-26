@@ -176,7 +176,7 @@ namespace Presentacion
             this.CerrarPictureBox.IconColor = System.Drawing.Color.White;
             this.CerrarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CerrarPictureBox.IconSize = 24;
-            this.CerrarPictureBox.Location = new System.Drawing.Point(1031, 0);
+            this.CerrarPictureBox.Location = new System.Drawing.Point(1024, 2);
             this.CerrarPictureBox.Name = "CerrarPictureBox";
             this.CerrarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.CerrarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -192,7 +192,7 @@ namespace Presentacion
             this.label7.ForeColor = System.Drawing.Color.Gainsboro;
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(1067, 26);
+            this.label7.Size = new System.Drawing.Size(1048, 26);
             this.label7.TabIndex = 12;
             this.label7.Text = "PRODUCTOS";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -202,7 +202,8 @@ namespace Presentacion
             this.ProductoDataGridView.AllowUserToAddRows = false;
             this.ProductoDataGridView.AllowUserToDeleteRows = false;
             this.ProductoDataGridView.AllowUserToOrderColumns = true;
-            this.ProductoDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProductoDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductoDataGridView.BackgroundColor = System.Drawing.Color.White;
@@ -217,7 +218,7 @@ namespace Presentacion
             this.ProductoDataGridView.RowHeadersVisible = false;
             this.ProductoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ProductoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductoDataGridView.Size = new System.Drawing.Size(671, 194);
+            this.ProductoDataGridView.Size = new System.Drawing.Size(652, 254);
             this.ProductoDataGridView.TabIndex = 18;
             this.ProductoDataGridView.TabStop = false;
             // 
@@ -229,13 +230,14 @@ namespace Presentacion
             this.CancelarButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CancelarButton.IconSize = 22;
             this.CancelarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CancelarButton.Location = new System.Drawing.Point(384, 255);
+            this.CancelarButton.Location = new System.Drawing.Point(231, 255);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(97, 35);
             this.CancelarButton.TabIndex = 15;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarButton.UseVisualStyleBackColor = true;
+            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // EliminarButton
             // 
@@ -251,6 +253,7 @@ namespace Presentacion
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Visible = false;
             // 
             // ActualizarButton
             // 
@@ -267,6 +270,7 @@ namespace Presentacion
             this.ActualizarButton.Text = "Actualizar";
             this.ActualizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ActualizarButton.UseVisualStyleBackColor = true;
+            this.ActualizarButton.Visible = false;
             // 
             // GuardarButton
             // 
@@ -329,7 +333,7 @@ namespace Presentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1067, 302);
+            this.ClientSize = new System.Drawing.Size(1048, 302);
             this.Controls.Add(this.AbrirPresentacionButton);
             this.Controls.Add(this.AbrirCategoriasButton);
             this.Controls.Add(this.CancelarButton);

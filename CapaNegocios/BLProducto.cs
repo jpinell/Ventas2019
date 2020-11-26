@@ -15,9 +15,9 @@ namespace CapaNegocios
             return CADProducto.GetData();
         }
 
-        public static void InsertProductoGetIDProducto(ENTProducto p)
+        public static int InsertProductoGetIDProducto(ENTProducto p)
         {
-            CADProducto.InsertProductoGetIDProducto(p);
+            return CADProducto.InsertProductoGetIDProducto(p);
         }
     }
 }

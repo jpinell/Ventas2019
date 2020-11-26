@@ -1,12 +1,7 @@
-﻿using CapaNegocios;
+﻿using CapaEntidades;
+using CapaNegocios;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -18,7 +13,8 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        private int vidCategoria, vidPresentacion;
+
+        private int vidCategoria, vidPresentacion, vidProducto;
 
         private void CerrarPictureBox_Click(object sender, EventArgs e)
         {
@@ -32,6 +28,8 @@ namespace Presentacion
             BLFormatoGrid.FormatoGrid(ProductoDataGridView);
             ListarCategorias();
             ListarPresentacion();
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
+
         }
 
         private void ListarPresentacion()
@@ -81,6 +79,53 @@ namespace Presentacion
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos()) return;
+
+            ENTProducto producto = new ENTProducto
+            {
+                Articulo = ArticuloTextBox.Text,
+                Cantidad = float.Parse(CantidadTextBox.Text),
+                Costo = Convert.ToDecimal(CostoTextBox.Text),
+                Descripcion = DescripcionTextBox.Text,
+                IDCategoria = vidCategoria,
+                IDPresentacion = vidPresentacion
+            };
+
+            using (var scope = new TransactionScope())
+            {
+                //INSERTA EL PRODUCTO Y CAPTURA EL IDProducto
+                int IDProducto = BLProducto.InsertProductoGetIDProducto(producto);
+
+                //GRABAR EN KARDEX
+                ENTKardex kardex = new ENTKardex();
+                kardex.Fecha = DateTime.Now;
+                kardex.Concepto = "INVENTARIO INICIAL";
+                kardex.Entrada = float.Parse(CantidadTextBox.Text);
+                kardex.Existencia = float.Parse(CantidadTextBox.Text);
+                kardex.CostoUnitario = Convert.ToDecimal(CostoTextBox.Text);
+                kardex.Debe = Convert.ToDecimal(kardex.Entrada) * kardex.CostoUnitario;
+                kardex.Saldo = kardex.Debe;
+                kardex.CostoPromedio = kardex.CostoUnitario;
+                kardex.IDProducto = IDProducto;
+
+                BLKardex.InsertKardex(kardex);
+
+                scope.Complete();
+            }
+
+            ListarProductos();
+            LimpiarCajas();
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
+        }
+
+        private void LimpiarCajas()
+        {
+            CategoriaComboBox.SelectedIndex = -1;
+            CantidadTextBox.Text = string.Empty;
+            ArticuloTextBox.Text = string.Empty;
+            DescripcionTextBox.Text = string.Empty;
+            CostoTextBox.Text = string.Empty;
+            PresentacionComboBox.SelectedIndex = -1;
+            CategoriaComboBox.Focus();
         }
 
         private bool ValidarCampos()
@@ -101,7 +146,21 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            //VALIDAR DATOS NUMERICOS, MAYOR QUE CERO, ETC.
+            if (!float.TryParse(CantidadTextBox.Text, out float cantidad))
+            {
+                errorProvider1.SetError(CantidadTextBox, "Debe ingresar un valor numérico entero");
+                CantidadTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            if (cantidad <= 0)
+            {
+                errorProvider1.SetError(CantidadTextBox, "Debe ingresar un valor mayor a cero");
+                CantidadTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
 
             if (ArticuloTextBox.Text == string.Empty)
             {
@@ -119,7 +178,21 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            //VALIDAR DATOS NUMERICOS, MAYOR QUE CERO, ETC.
+            if(!decimal.TryParse(CostoTextBox.Text, out decimal costo))
+            {
+                errorProvider1.SetError(CostoTextBox, "Debe ingresar un valor numérico entero");
+                CostoTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            if (costo <= 0)
+            {
+                errorProvider1.SetError(CostoTextBox, "Debe ingresar un valor mayor a cero");
+                CostoTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
 
             if (PresentacionComboBox.SelectedIndex == -1)
             {
@@ -132,11 +205,17 @@ namespace Presentacion
             return true;
         }
 
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            LimpiarCajas();
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
+            errorProvider1.Dispose(); //QUITAR EL ICONO DEL ERROR!!!
+        }
+
         private void CategoriaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-
                 vidCategoria = (int)CategoriaComboBox.SelectedValue;
             }
             catch (Exception)

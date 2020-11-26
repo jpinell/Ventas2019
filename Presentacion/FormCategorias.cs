@@ -27,7 +27,7 @@ namespace Presentacion
             ListarCategorias();
             //Establecer formato personalizado al DataGridView
             BLFormatoGrid.FormatoGrid(CategoriaDataGridView);
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true,GuardarButton,ActualizarButton,EliminarButton);
         }
 
         private void ListarCategorias()
@@ -41,18 +41,10 @@ namespace Presentacion
             Close();
         }
 
-        private void HabilitarBotones(bool activo)
-        {
-            //ACTIVA O DESACTIVA LOS BOTONES
-            GuardarButton.Enabled = activo;
-            ActualizarButton.Enabled = !activo;
-            EliminarButton.Enabled = !activo;
-        }
-
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             errorProvider1.Dispose(); //QUITAR EL ICONO DEL ERROR!!!
         }
 
@@ -108,7 +100,7 @@ namespace Presentacion
             CategoriaTextBox.Text = CategoriaDataGridView.CurrentRow.Cells[1].Value.ToString();
             DescripcionTextBox.Text = CategoriaDataGridView.CurrentRow.Cells[2].Value.ToString();
 
-            HabilitarBotones(false);
+            BLBotones.HabilitarBotones(false, GuardarButton, ActualizarButton, EliminarButton);
         }
 
         private void ActualizarButton_Click(object sender, EventArgs e)
@@ -124,7 +116,7 @@ namespace Presentacion
             BLCategoria.UpdateCategorias(categoria);
 
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             ListarCategorias();
         }
 
@@ -137,14 +129,14 @@ namespace Presentacion
             if (rta == DialogResult.No)
             {
                 LimpiarCajas();
-                HabilitarBotones(true);
+                BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
                 return;
             }
 
             BLCategoria.DeleteCategorias(vidCategoria);
 
             LimpiarCajas();
-            HabilitarBotones(true);
+            BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
             ListarCategorias();
         }
     }

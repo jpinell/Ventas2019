@@ -27,6 +27,7 @@ namespace CapaNegocios
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             grid.MultiSelect = false;
+            grid.ScrollBars = ScrollBars.Vertical;
             grid.Columns[0].Visible = false;
         }
     }

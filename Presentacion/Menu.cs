@@ -30,7 +30,7 @@ namespace Presentacion
             MaximizarPictureBox.BringToFront();
 
             this.MaximumSize = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
         }
 
         //Estructura
@@ -124,6 +124,7 @@ namespace Presentacion
         private void KardexButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color5);
+            OpenChildForm(new FormKardex());
         }
 
         private void UsuariosButton_Click(object sender, EventArgs e)
