@@ -30,7 +30,6 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.CategoriaComboBox = new System.Windows.Forms.ComboBox();
@@ -55,9 +54,11 @@ namespace Presentacion
             this.AbrirCategoriasButton = new FontAwesome.Sharp.IconButton();
             this.AbrirPresentacionButton = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,9 +67,9 @@ namespace Presentacion
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Categoria:";
+            this.label1.Text = "Categoria *:";
             // 
             // CategoriaComboBox
             // 
@@ -85,9 +86,9 @@ namespace Presentacion
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(35, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 15);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Cantidad:";
+            this.label2.Text = "Cantidad *:";
             // 
             // CantidadTextBox
             // 
@@ -109,9 +110,9 @@ namespace Presentacion
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(44, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 15);
+            this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Artículo:";
+            this.label3.Text = "Artículo *:";
             // 
             // DescripcionTextBox
             // 
@@ -143,9 +144,9 @@ namespace Presentacion
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(53, 174);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 15);
+            this.label5.Size = new System.Drawing.Size(49, 15);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Costo:";
+            this.label5.Text = "Costo *:";
             // 
             // PresentacionComboBox
             // 
@@ -162,9 +163,9 @@ namespace Presentacion
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(12, 210);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.Size = new System.Drawing.Size(90, 15);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Presentación:";
+            this.label6.Text = "Presentación *:";
             // 
             // CerrarPictureBox
             // 
@@ -175,7 +176,7 @@ namespace Presentacion
             this.CerrarPictureBox.IconColor = System.Drawing.Color.White;
             this.CerrarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CerrarPictureBox.IconSize = 24;
-            this.CerrarPictureBox.Location = new System.Drawing.Point(1043, 0);
+            this.CerrarPictureBox.Location = new System.Drawing.Point(1031, 0);
             this.CerrarPictureBox.Name = "CerrarPictureBox";
             this.CerrarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.CerrarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -201,21 +202,13 @@ namespace Presentacion
             this.ProductoDataGridView.AllowUserToAddRows = false;
             this.ProductoDataGridView.AllowUserToDeleteRows = false;
             this.ProductoDataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(225)))), ((int)(((byte)(242)))));
-            this.ProductoDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ProductoDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ProductoDataGridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.ProductoDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProductoDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.ProductoDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.ProductoDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ProductoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.ProductoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductoDataGridView.Location = new System.Drawing.Point(384, 36);
@@ -225,7 +218,7 @@ namespace Presentacion
             this.ProductoDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ProductoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductoDataGridView.Size = new System.Drawing.Size(671, 194);
-            this.ProductoDataGridView.TabIndex = 14;
+            this.ProductoDataGridView.TabIndex = 18;
             this.ProductoDataGridView.TabStop = false;
             // 
             // CancelarButton
@@ -239,7 +232,7 @@ namespace Presentacion
             this.CancelarButton.Location = new System.Drawing.Point(384, 255);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(97, 35);
-            this.CancelarButton.TabIndex = 18;
+            this.CancelarButton.TabIndex = 15;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarButton.UseVisualStyleBackColor = true;
@@ -254,7 +247,7 @@ namespace Presentacion
             this.EliminarButton.Location = new System.Drawing.Point(221, 255);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(97, 35);
-            this.EliminarButton.TabIndex = 17;
+            this.EliminarButton.TabIndex = 14;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarButton.UseVisualStyleBackColor = true;
@@ -270,7 +263,7 @@ namespace Presentacion
             this.ActualizarButton.Location = new System.Drawing.Point(118, 255);
             this.ActualizarButton.Name = "ActualizarButton";
             this.ActualizarButton.Size = new System.Drawing.Size(97, 35);
-            this.ActualizarButton.TabIndex = 16;
+            this.ActualizarButton.TabIndex = 13;
             this.ActualizarButton.Text = "Actualizar";
             this.ActualizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ActualizarButton.UseVisualStyleBackColor = true;
@@ -286,10 +279,11 @@ namespace Presentacion
             this.GuardarButton.Location = new System.Drawing.Point(15, 255);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(97, 35);
-            this.GuardarButton.TabIndex = 15;
+            this.GuardarButton.TabIndex = 12;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // conjuntoDatos1
             // 
@@ -303,10 +297,10 @@ namespace Presentacion
             this.AbrirCategoriasButton.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.AbrirCategoriasButton.IconSize = 16;
             this.AbrirCategoriasButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AbrirCategoriasButton.Location = new System.Drawing.Point(231, 35);
+            this.AbrirCategoriasButton.Location = new System.Drawing.Point(231, 33);
             this.AbrirCategoriasButton.Name = "AbrirCategoriasButton";
-            this.AbrirCategoriasButton.Size = new System.Drawing.Size(26, 22);
-            this.AbrirCategoriasButton.TabIndex = 19;
+            this.AbrirCategoriasButton.Size = new System.Drawing.Size(26, 24);
+            this.AbrirCategoriasButton.TabIndex = 16;
             this.toolTip1.SetToolTip(this.AbrirCategoriasButton, "Agregar Categoria del Producto");
             this.AbrirCategoriasButton.UseVisualStyleBackColor = true;
             this.AbrirCategoriasButton.Click += new System.EventHandler(this.AbrirCategoriasButton_Click);
@@ -318,13 +312,17 @@ namespace Presentacion
             this.AbrirPresentacionButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.AbrirPresentacionButton.IconSize = 16;
             this.AbrirPresentacionButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AbrirPresentacionButton.Location = new System.Drawing.Point(231, 210);
+            this.AbrirPresentacionButton.Location = new System.Drawing.Point(231, 207);
             this.AbrirPresentacionButton.Name = "AbrirPresentacionButton";
-            this.AbrirPresentacionButton.Size = new System.Drawing.Size(26, 21);
-            this.AbrirPresentacionButton.TabIndex = 20;
+            this.AbrirPresentacionButton.Size = new System.Drawing.Size(26, 24);
+            this.AbrirPresentacionButton.TabIndex = 17;
             this.toolTip1.SetToolTip(this.AbrirPresentacionButton, "Agregar Presentación del Producto");
             this.AbrirPresentacionButton.UseVisualStyleBackColor = true;
             this.AbrirPresentacionButton.Click += new System.EventHandler(this.AbrirPresentacionButton_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormProductos
             // 
@@ -362,6 +360,7 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +391,6 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton AbrirCategoriasButton;
         private FontAwesome.Sharp.IconButton AbrirPresentacionButton;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

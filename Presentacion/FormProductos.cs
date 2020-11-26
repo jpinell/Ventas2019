@@ -28,6 +28,8 @@ namespace Presentacion
         private void FormProductos_Load(object sender, EventArgs e)
         {
             ListarProductos();
+            //Establecer formato personalizado al DataGridView
+            BLFormatoGrid.FormatoGrid(ProductoDataGridView);
             ListarCategorias();
             ListarPresentacion();
         }
@@ -62,6 +64,7 @@ namespace Presentacion
         private void AbrirPresentacionButton_Click(object sender, EventArgs e)
         {
             FormPresentacion form = new FormPresentacion();
+            form.ShowDialog();
         }
 
         private void PresentacionComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,6 +76,60 @@ namespace Presentacion
             catch (Exception)
             {
             }
+        }
+
+        private void GuardarButton_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCampos()) return;
+        }
+
+        private bool ValidarCampos()
+        {
+            if (CategoriaComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(AbrirCategoriasButton, "Seleccione la Categoría");
+                CategoriaComboBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            if (CantidadTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(CantidadTextBox, "Ingrese la cantidad");
+                CantidadTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            //VALIDAR DATOS NUMERICOS, MAYOR QUE CERO, ETC.
+
+            if (ArticuloTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(ArticuloTextBox, "Ingrese el Nombre del Artículo");
+                ArticuloTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            if (CostoTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(CostoTextBox, "Ingrese el Costo del Artículo");
+                CostoTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            //VALIDAR DATOS NUMERICOS, MAYOR QUE CERO, ETC.
+
+            if (PresentacionComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(AbrirPresentacionButton, "Seleccione la Presentación del Artículo");
+                PresentacionComboBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
+
+            return true;
         }
 
         private void CategoriaComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -25,13 +25,14 @@ namespace Presentacion
         private void FormCategorias_Load(object sender, EventArgs e)
         {
             ListarCategorias();
+            //Establecer formato personalizado al DataGridView
+            BLFormatoGrid.FormatoGrid(CategoriaDataGridView);
             HabilitarBotones(true);
         }
 
         private void ListarCategorias()
         {
             CategoriaDataGridView.DataSource = BLCategoria.GetData();
-            CategoriaDataGridView.Columns[0].Visible = false;
             CategoriaDataGridView.Columns[2].HeaderText = "Descripción";
         }
 
@@ -87,6 +88,15 @@ namespace Presentacion
                 CategoriaTextBox.Focus();
                 return false;
             }
+            errorProvider1.Clear();
+
+            if (DescripcionTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción de la Categoria");
+                DescripcionTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
 
             return true;
         }

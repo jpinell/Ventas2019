@@ -26,11 +26,11 @@ namespace Presentacion
             ControlBox = false;
             DoubleBuffered = true;
             //Maximizar ajustar tamaño de pantalla
-            MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            //MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             MaximizarPictureBox.BringToFront();
 
             this.MaximumSize = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            //this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         //Estructura

@@ -76,7 +76,7 @@ namespace Presentacion
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(220, 814);
+            this.PanelMenu.Size = new System.Drawing.Size(220, 645);
             this.PanelMenu.TabIndex = 0;
             // 
             // SalirButton
@@ -92,7 +92,7 @@ namespace Presentacion
             this.SalirButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SalirButton.IconSize = 40;
             this.SalirButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SalirButton.Location = new System.Drawing.Point(0, 754);
+            this.SalirButton.Location = new System.Drawing.Point(0, 585);
             this.SalirButton.Name = "SalirButton";
             this.SalirButton.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.SalirButton.Size = new System.Drawing.Size(220, 60);
@@ -274,7 +274,7 @@ namespace Presentacion
             this.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.PanelTitleBar.Name = "PanelTitleBar";
-            this.PanelTitleBar.Size = new System.Drawing.Size(1556, 75);
+            this.PanelTitleBar.Size = new System.Drawing.Size(1026, 75);
             this.PanelTitleBar.TabIndex = 1;
             this.PanelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitleBar_MouseDown);
             // 
@@ -287,7 +287,7 @@ namespace Presentacion
             this.MinimizarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
             this.MinimizarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MinimizarPictureBox.IconSize = 24;
-            this.MinimizarPictureBox.Location = new System.Drawing.Point(1460, 3);
+            this.MinimizarPictureBox.Location = new System.Drawing.Point(930, 3);
             this.MinimizarPictureBox.Name = "MinimizarPictureBox";
             this.MinimizarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.MinimizarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -304,7 +304,7 @@ namespace Presentacion
             this.RestaurarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
             this.RestaurarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.RestaurarPictureBox.IconSize = 24;
-            this.RestaurarPictureBox.Location = new System.Drawing.Point(1490, 3);
+            this.RestaurarPictureBox.Location = new System.Drawing.Point(960, 3);
             this.RestaurarPictureBox.Name = "RestaurarPictureBox";
             this.RestaurarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.RestaurarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -321,7 +321,7 @@ namespace Presentacion
             this.MaximizarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
             this.MaximizarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MaximizarPictureBox.IconSize = 24;
-            this.MaximizarPictureBox.Location = new System.Drawing.Point(1490, 3);
+            this.MaximizarPictureBox.Location = new System.Drawing.Point(960, 3);
             this.MaximizarPictureBox.Name = "MaximizarPictureBox";
             this.MaximizarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.MaximizarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -338,7 +338,7 @@ namespace Presentacion
             this.CerrarPictureBox.IconColor = System.Drawing.Color.Gainsboro;
             this.CerrarPictureBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CerrarPictureBox.IconSize = 24;
-            this.CerrarPictureBox.Location = new System.Drawing.Point(1520, 3);
+            this.CerrarPictureBox.Location = new System.Drawing.Point(990, 3);
             this.CerrarPictureBox.Name = "CerrarPictureBox";
             this.CerrarPictureBox.Size = new System.Drawing.Size(24, 24);
             this.CerrarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -375,7 +375,7 @@ namespace Presentacion
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(220, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1556, 6);
+            this.panel1.Size = new System.Drawing.Size(1026, 6);
             this.panel1.TabIndex = 2;
             // 
             // PanelDeskTop
@@ -385,14 +385,14 @@ namespace Presentacion
             this.PanelDeskTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelDeskTop.Location = new System.Drawing.Point(220, 81);
             this.PanelDeskTop.Name = "PanelDeskTop";
-            this.PanelDeskTop.Size = new System.Drawing.Size(1556, 733);
+            this.PanelDeskTop.Size = new System.Drawing.Size(1026, 564);
             this.PanelDeskTop.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.rebaja;
-            this.pictureBox1.Location = new System.Drawing.Point(710, 296);
+            this.pictureBox1.Location = new System.Drawing.Point(445, 212);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(132, 77);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -403,7 +403,7 @@ namespace Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1776, 814);
+            this.ClientSize = new System.Drawing.Size(1246, 645);
             this.ControlBox = false;
             this.Controls.Add(this.PanelDeskTop);
             this.Controls.Add(this.panel1);
