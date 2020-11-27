@@ -23,7 +23,6 @@ namespace Presentacion
         private void FormKardex_Load(object sender, EventArgs e)
         {
             ListarProductos();
-            KardexDataGridView.DataSource = BLKardex.GetData();
         }
 
         private void ListarProductos()
@@ -53,6 +52,8 @@ namespace Presentacion
 
                 KardexDataGridView.DataSource = null;
                 KardexDataGridView.DataSource = k;
+
+                BLFormatoGrid.FormatoGrid(KardexDataGridView);
             }
             catch (Exception)
             {

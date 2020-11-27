@@ -49,6 +49,7 @@
     <Compile Include="BLKardex.cs" />
     <Compile Include="BLPresentacion.cs" />
     <Compile Include="BLProducto.cs" />
+    <Compile Include="BLProveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -36,18 +36,21 @@ namespace CapaDatos
 
             if (miTabla.Rows.Count == 0) return miKardex;
             KardexRow miRegistro = (KardexRow)miTabla.Rows[0];
-            miKardex = new ENTKardex();
-            miKardex.Fecha = miRegistro.Fecha;
-            miKardex.Concepto = miRegistro.Concepto;
-            miKardex.Entrada = (float)miRegistro.Entrada;
-            miKardex.Salida = (float)miRegistro.Salida;
-            miKardex.Existencia = (float)miRegistro.Existencia;
-            miKardex.CostoUnitario = miRegistro.CostoUnitario;
-            miKardex.Debe = miRegistro.Debe;
-            miKardex.Haber = miRegistro.Haber;
-            miKardex.Saldo = miRegistro.Saldo;
-            miKardex.CostoPromedio = miRegistro.CostoPromedio;
-            miKardex.IDProducto = miRegistro.IDProducto;
+            
+            miKardex = new ENTKardex
+            {
+                Fecha = miRegistro.Fecha,
+                Concepto = miRegistro.Concepto,
+                Entrada = (float)miRegistro.Entrada,
+                Salida = (float)miRegistro.Salida,
+                Existencia = (float)miRegistro.Existencia,
+                CostoUnitario = miRegistro.CostoUnitario,
+                Debe = miRegistro.Debe,
+                Haber = miRegistro.Haber,
+                Saldo = miRegistro.Saldo,
+                CostoPromedio = miRegistro.CostoPromedio,
+                IDProducto = miRegistro.IDProducto
+            };
 
             return miKardex;
         }
