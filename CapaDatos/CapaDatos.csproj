@@ -45,6 +45,7 @@
     <Compile Include="CADKardex.cs" />
     <Compile Include="CADPresentacion.cs" />
     <Compile Include="CADProducto.cs" />
+    <Compile Include="CADProveedor.cs" />
     <Compile Include="ConjuntoDatos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

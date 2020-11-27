@@ -25,10 +25,11 @@ namespace CapaNegocios
 
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.RowHeadersVisible = false;
 
             grid.MultiSelect = false;
             grid.ScrollBars = ScrollBars.Vertical;
-            grid.Columns[0].Visible = false;
+            //grid.Columns[0].Visible = false;
         }
     }
 }
