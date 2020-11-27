@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CADCategoria.cs" />
+    <Compile Include="CADCompra.cs" />
+    <Compile Include="CADCompraDetalle.cs" />
     <Compile Include="CADKardex.cs" />
     <Compile Include="CADPresentacion.cs" />
     <Compile Include="CADProducto.cs" />
