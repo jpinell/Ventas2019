@@ -57,12 +57,14 @@ namespace Presentacion
         {
             FormCategorias form = new FormCategorias();
             form.ShowDialog();
+            ListarCategorias();
         }
 
         private void AbrirPresentacionButton_Click(object sender, EventArgs e)
         {
             FormPresentacion form = new FormPresentacion();
             form.ShowDialog();
+            ListarPresentacion();
         }
 
         private void PresentacionComboBox_SelectedIndexChanged(object sender, EventArgs e)
