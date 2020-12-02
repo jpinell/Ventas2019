@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="BLBotones.cs" />
     <Compile Include="BLCategoria.cs" />
+    <Compile Include="BLCompra.cs" />
+    <Compile Include="BLCompraDetalle.cs" />
     <Compile Include="BLFormatoGrid.cs" />
     <Compile Include="BLKardex.cs" />
     <Compile Include="BLPresentacion.cs" />

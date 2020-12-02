@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDatos.ConjuntoDatosTableAdapters;
+using CapaEntidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,12 @@ namespace CapaDatos
 {
     public class CADCompra
     {
+        private static ComprasTableAdapter adaptador = new ComprasTableAdapter();
+
+        public static int InsertComprasGetIDCompra(ENTCompra c)
+        {
+            return adaptador.InsertComprasGetIDCompra(c.IDProveedor, c.Fecha, c.NoFactura);
+        }
+
     }
 }

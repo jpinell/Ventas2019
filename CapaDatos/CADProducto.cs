@@ -20,7 +20,7 @@ namespace CapaDatos
                 p.Cantidad,
                 p.Articulo,
                 p.Descripcion,
-                p.Costo,
+                p.Precio,
                 p.IDPresentacion);
         }
     }

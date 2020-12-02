@@ -1120,7 +1120,7 @@ namespace CapaDatos {
             
             private global::System.Data.DataColumn columnDescripcion;
             
-            private global::System.Data.DataColumn columnCosto;
+            private global::System.Data.DataColumn columnPrecio;
             
             private global::System.Data.DataColumn columnIDPresentacion;
             
@@ -1199,9 +1199,9 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CostoColumn {
+            public global::System.Data.DataColumn PrecioColumn {
                 get {
-                    return this.columnCosto;
+                    return this.columnPrecio;
                 }
             }
             
@@ -1250,7 +1250,7 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ProductosRow AddProductosRow(CategoriasRow parentCategoriasRowByFK_Productos_Categorias, double Cantidad, string Articulo, string Descripcion, decimal Costo, PresentacionRow parentPresentacionRowByFK_Productos_Presentacion) {
+            public ProductosRow AddProductosRow(CategoriasRow parentCategoriasRowByFK_Productos_Categorias, double Cantidad, string Articulo, string Descripcion, decimal Precio, PresentacionRow parentPresentacionRowByFK_Productos_Presentacion) {
                 ProductosRow rowProductosRow = ((ProductosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1258,7 +1258,7 @@ namespace CapaDatos {
                         Cantidad,
                         Articulo,
                         Descripcion,
-                        Costo,
+                        Precio,
                         null};
                 if ((parentCategoriasRowByFK_Productos_Categorias != null)) {
                     columnValuesArray[1] = parentCategoriasRowByFK_Productos_Categorias[0];
@@ -1300,7 +1300,7 @@ namespace CapaDatos {
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnArticulo = base.Columns["Articulo"];
                 this.columnDescripcion = base.Columns["Descripcion"];
-                this.columnCosto = base.Columns["Costo"];
+                this.columnPrecio = base.Columns["Precio"];
                 this.columnIDPresentacion = base.Columns["IDPresentacion"];
             }
             
@@ -1317,8 +1317,8 @@ namespace CapaDatos {
                 base.Columns.Add(this.columnArticulo);
                 this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcion);
-                this.columnCosto = new global::System.Data.DataColumn("Costo", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCosto);
+                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecio);
                 this.columnIDPresentacion = new global::System.Data.DataColumn("IDPresentacion", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDPresentacion);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1334,7 +1334,7 @@ namespace CapaDatos {
                 this.columnArticulo.AllowDBNull = false;
                 this.columnArticulo.MaxLength = 50;
                 this.columnDescripcion.MaxLength = 2147483647;
-                this.columnCosto.AllowDBNull = false;
+                this.columnPrecio.AllowDBNull = false;
                 this.columnIDPresentacion.AllowDBNull = false;
             }
             
@@ -3106,12 +3106,12 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal Costo {
+            public decimal Precio {
                 get {
-                    return ((decimal)(this[this.tableProductos.CostoColumn]));
+                    return ((decimal)(this[this.tableProductos.PrecioColumn]));
                 }
                 set {
-                    this[this.tableProductos.CostoColumn] = value;
+                    this[this.tableProductos.PrecioColumn] = value;
                 }
             }
             
@@ -4938,18 +4938,19 @@ SELECT IDCategoria, Categoria, Descripcion FROM Categorias WHERE (IDCategoria = 
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("Articulo", "Articulo");
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
-            tableMapping.ColumnMappings.Add("Costo", "Costo");
+            tableMapping.ColumnMappings.Add("Costo", "Precio");
             tableMapping.ColumnMappings.Add("IDPresentacion", "IDPresentacion");
+            tableMapping.ColumnMappings.Add("Precio", "Precio");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Productos] WHERE (([IDProducto] = @Original_IDProducto) AND ([IDCategoria] = @Original_IDCategoria) AND ([Cantidad] = @Original_Cantidad) AND ([Articulo] = @Original_Articulo) AND ([Costo] = @Original_Costo) AND ([IDPresentacion] = @Original_IDPresentacion))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Productos] WHERE (([IDProducto] = @Original_IDProducto) AND ([IDCategoria] = @Original_IDCategoria) AND ([Cantidad] = @Original_Cantidad) AND ([Articulo] = @Original_Articulo) AND ([Precio] = @Original_Precio) AND ([IDPresentacion] = @Original_IDPresentacion))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDProducto", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDProducto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCategoria", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCategoria", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Articulo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Articulo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Costo", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Costo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Precio", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDPresentacion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPresentacion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -4964,20 +4965,20 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPresentacion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPresentacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Productos] SET [IDCategoria] = @IDCategoria, [Cantidad] = @Cantidad, [Articulo] = @Articulo, [Descripcion] = @Descripcion, [Costo] = @Costo, [IDPresentacion] = @IDPresentacion WHERE (([IDProducto] = @Original_IDProducto) AND ([IDCategoria] = @Original_IDCategoria) AND ([Cantidad] = @Original_Cantidad) AND ([Articulo] = @Original_Articulo) AND ([Costo] = @Original_Costo) AND ([IDPresentacion] = @Original_IDPresentacion));
-SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresentacion FROM Productos WHERE (IDProducto = @IDProducto)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Productos] SET [IDCategoria] = @IDCategoria, [Cantidad] = @Cantidad, [Articulo] = @Articulo, [Descripcion] = @Descripcion, [Precio] = @Precio, [IDPresentacion] = @IDPresentacion WHERE (([IDProducto] = @Original_IDProducto) AND ([IDCategoria] = @Original_IDCategoria) AND ([Cantidad] = @Original_Cantidad) AND ([Articulo] = @Original_Articulo) AND ([Precio] = @Original_Precio) AND ([IDPresentacion] = @Original_IDPresentacion));
+SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Precio, IDPresentacion FROM Productos WHERE (IDProducto = @IDProducto)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCategoria", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCategoria", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Articulo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Articulo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Costo", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Costo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Precio", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPresentacion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPresentacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDProducto", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDProducto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCategoria", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCategoria", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Articulo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Articulo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Costo", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Costo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Precio", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDPresentacion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPresentacion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProducto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDProducto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -4995,8 +4996,8 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresent" +
-                "acion FROM dbo.Productos";
+            this._commandCollection[0].CommandText = "SELECT        IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Precio, I" +
+                "DPresentacion\r\nFROM            Productos";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -5007,7 +5008,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cantidad", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 53, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Articulo", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Costo", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Precio", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPresentacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5068,7 +5069,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Costo, int Original_IDPresentacion) {
+        public virtual int Delete(int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Precio, int Original_IDPresentacion) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IDProducto));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IDCategoria));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((double)(Original_Cantidad));
@@ -5078,7 +5079,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Articulo));
             }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_Costo));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_Precio));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_IDPresentacion));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5137,7 +5138,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IDCategoria, double Cantidad, string Articulo, string Descripcion, decimal Costo, int IDPresentacion, int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Costo, int Original_IDPresentacion, int IDProducto) {
+        public virtual int Update(int IDCategoria, double Cantidad, string Articulo, string Descripcion, decimal Precio, int IDPresentacion, int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Precio, int Original_IDPresentacion, int IDProducto) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IDCategoria));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(Cantidad));
             if ((Articulo == null)) {
@@ -5152,7 +5153,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Descripcion));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(Costo));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(Precio));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(IDPresentacion));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_IDProducto));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_IDCategoria));
@@ -5163,7 +5164,7 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Articulo));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_Costo));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_Precio));
             this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_IDPresentacion));
             this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(IDProducto));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
@@ -5186,15 +5187,15 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IDCategoria, double Cantidad, string Articulo, string Descripcion, decimal Costo, int IDPresentacion, int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Costo, int Original_IDPresentacion) {
-            return this.Update(IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresentacion, Original_IDProducto, Original_IDCategoria, Original_Cantidad, Original_Articulo, Original_Costo, Original_IDPresentacion, Original_IDProducto);
+        public virtual int Update(int IDCategoria, double Cantidad, string Articulo, string Descripcion, decimal Precio, int IDPresentacion, int Original_IDProducto, int Original_IDCategoria, double Original_Cantidad, string Original_Articulo, decimal Original_Precio, int Original_IDPresentacion) {
+            return this.Update(IDCategoria, Cantidad, Articulo, Descripcion, Precio, IDPresentacion, Original_IDProducto, Original_IDCategoria, Original_Cantidad, Original_Articulo, Original_Precio, Original_IDPresentacion, Original_IDProducto);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertProductoGetIDProducto(global::System.Nullable<int> IDCategoria, global::System.Nullable<double> Cantidad, string Articulo, string Descripcion, global::System.Nullable<decimal> Costo, global::System.Nullable<int> IDPresentacion) {
+        public virtual object InsertProductoGetIDProducto(global::System.Nullable<int> IDCategoria, global::System.Nullable<double> Cantidad, string Articulo, string Descripcion, global::System.Nullable<decimal> Precio, global::System.Nullable<int> IDPresentacion) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((IDCategoria.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(IDCategoria.Value));
@@ -5220,8 +5221,8 @@ SELECT IDProducto, IDCategoria, Cantidad, Articulo, Descripcion, Costo, IDPresen
             else {
                 command.Parameters[4].Value = ((string)(Descripcion));
             }
-            if ((Costo.HasValue == true)) {
-                command.Parameters[5].Value = ((decimal)(Costo.Value));
+            if ((Precio.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(Precio.Value));
             }
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
@@ -6642,11 +6643,19 @@ SELECT IDCompra, IDProveedor, Fecha, NoFactura FROM Compras WHERE (IDCompra = @I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDCompra, IDProveedor, Fecha, NoFactura FROM dbo.Compras";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "dbo.InsertComprasGetIDCompra";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProveedor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoFactura", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6806,6 +6815,47 @@ SELECT IDCompra, IDProveedor, Fecha, NoFactura FROM Compras WHERE (IDCompra = @I
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int IDProveedor, System.DateTime Fecha, string NoFactura, int Original_IDCompra, int Original_IDProveedor, System.DateTime Original_Fecha, string Original_NoFactura) {
             return this.Update(IDProveedor, Fecha, NoFactura, Original_IDCompra, Original_IDProveedor, Original_Fecha, Original_NoFactura, Original_IDCompra);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertComprasGetIDCompra(global::System.Nullable<int> IDProveedor, global::System.Nullable<global::System.DateTime> Fecha, string NoFactura) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((IDProveedor.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(IDProveedor.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Fecha.HasValue == true)) {
+                command.Parameters[2].Value = ((System.DateTime)(Fecha.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((NoFactura == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(NoFactura));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
@@ -6996,12 +7046,23 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitari" +
                 "o, SubTotal, IDKardex FROM dbo.CompraDetalle";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "dbo.InsertCompraDetalle";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCompra", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cantidad", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 53, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProducto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CostoUnitario", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDKardex", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7189,6 +7250,65 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int IDKardex, int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal, int Original_IDKardex) {
             return this.Update(IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, IDKardex, Original_IDCompraDetalle, Original_IDCompra, Original_Cantidad, Original_IDProducto, Original_Descripcion, Original_CostoUnitario, Original_SubTotal, Original_IDKardex, Original_IDCompraDetalle);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertCompraDetalle(global::System.Nullable<int> IDCompra, global::System.Nullable<double> Cantidad, global::System.Nullable<int> IDProducto, string Descripcion, global::System.Nullable<decimal> CostoUnitario, global::System.Nullable<int> IDKardex) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((IDCompra.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(IDCompra.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Cantidad.HasValue == true)) {
+                command.Parameters[2].Value = ((double)(Cantidad.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((IDProducto.HasValue == true)) {
+                command.Parameters[3].Value = ((int)(IDProducto.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Descripcion == null)) {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[4].Value = ((string)(Descripcion));
+            }
+            if ((CostoUnitario.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(CostoUnitario.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((IDKardex.HasValue == true)) {
+                command.Parameters[6].Value = ((int)(IDKardex.Value));
+            }
+            else {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

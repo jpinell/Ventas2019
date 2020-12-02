@@ -114,7 +114,7 @@ namespace Presentacion
             this.Controls.Add(this.label7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormKardex";
-            this.Text = "FormKardex";
+            this.Text = "Kardex";
             this.Load += new System.EventHandler(this.FormKardex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KardexDataGridView)).EndInit();

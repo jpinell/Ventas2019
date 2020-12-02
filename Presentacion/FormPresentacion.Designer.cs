@@ -70,10 +70,6 @@ namespace Presentacion
             this.PresentacionDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.PresentacionDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.PresentacionDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Empty;
             this.PresentacionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.PresentacionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PresentacionDataGridView.Location = new System.Drawing.Point(12, 112);
@@ -211,7 +207,7 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPresentacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormPresentacion";
+            this.Text = "Presentacion";
             this.Load += new System.EventHandler(this.FormPresentacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PresentacionDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
