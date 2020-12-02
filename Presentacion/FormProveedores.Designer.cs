@@ -190,6 +190,7 @@ namespace Presentacion
             this.ProveedorDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProveedorDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProveedorDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.ProveedorDataGridView.MultiSelect = false;
             this.ProveedorDataGridView.Name = "ProveedorDataGridView";
             this.ProveedorDataGridView.ReadOnly = true;
             this.ProveedorDataGridView.Size = new System.Drawing.Size(748, 257);
@@ -294,7 +295,7 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormProveedores";
+            this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FormProveedores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);

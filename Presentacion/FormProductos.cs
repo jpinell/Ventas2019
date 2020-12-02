@@ -86,7 +86,7 @@ namespace Presentacion
             {
                 Articulo = ArticuloTextBox.Text,
                 Cantidad = float.Parse(CantidadTextBox.Text),
-                Costo = Convert.ToDecimal(CostoTextBox.Text),
+                Precio = Convert.ToDecimal(PrecioTextBox.Text),
                 Descripcion = DescripcionTextBox.Text,
                 IDCategoria = vidCategoria,
                 IDPresentacion = vidPresentacion
@@ -103,7 +103,7 @@ namespace Presentacion
                 kardex.Concepto = "INVENTARIO INICIAL";
                 kardex.Entrada = float.Parse(CantidadTextBox.Text);
                 kardex.Existencia = float.Parse(CantidadTextBox.Text);
-                kardex.CostoUnitario = Convert.ToDecimal(CostoTextBox.Text);
+                kardex.CostoUnitario = Convert.ToDecimal(PrecioTextBox.Text);
                 kardex.Debe = Convert.ToDecimal(kardex.Entrada) * kardex.CostoUnitario;
                 kardex.Saldo = kardex.Debe;
                 kardex.CostoPromedio = kardex.CostoUnitario;
@@ -125,7 +125,7 @@ namespace Presentacion
             CantidadTextBox.Text = string.Empty;
             ArticuloTextBox.Text = string.Empty;
             DescripcionTextBox.Text = string.Empty;
-            CostoTextBox.Text = string.Empty;
+            PrecioTextBox.Text = string.Empty;
             PresentacionComboBox.SelectedIndex = -1;
             CategoriaComboBox.Focus();
         }
@@ -172,26 +172,26 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            if (CostoTextBox.Text == string.Empty)
+            if (PrecioTextBox.Text == string.Empty)
             {
-                errorProvider1.SetError(CostoTextBox, "Ingrese el Costo del Artículo");
-                CostoTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Ingrese el Costo del Artículo");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();
 
-            if(!decimal.TryParse(CostoTextBox.Text, out decimal costo))
+            if(!decimal.TryParse(PrecioTextBox.Text, out decimal costo))
             {
-                errorProvider1.SetError(CostoTextBox, "Debe ingresar un valor numérico entero");
-                CostoTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Debe ingresar un valor numérico entero");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();
 
             if (costo <= 0)
             {
-                errorProvider1.SetError(CostoTextBox, "Debe ingresar un valor mayor a cero");
-                CostoTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Debe ingresar un valor mayor a cero");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();

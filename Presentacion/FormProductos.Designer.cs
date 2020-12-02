@@ -30,7 +30,7 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.CategoriaComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,7 +39,7 @@ namespace Presentacion
             this.label3 = new System.Windows.Forms.Label();
             this.DescripcionTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.CostoTextBox = new System.Windows.Forms.TextBox();
+            this.PrecioTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.PresentacionComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,22 +50,22 @@ namespace Presentacion
             this.EliminarButton = new FontAwesome.Sharp.IconButton();
             this.ActualizarButton = new FontAwesome.Sharp.IconButton();
             this.GuardarButton = new FontAwesome.Sharp.IconButton();
-            this.conjuntoDatos1 = new CapaDatos.ConjuntoDatos();
             this.AbrirCategoriasButton = new FontAwesome.Sharp.IconButton();
             this.AbrirPresentacionButton = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.conjuntoDatos1 = new CapaDatos.ConjuntoDatos();
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 36);
+            this.label1.Location = new System.Drawing.Point(23, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 0;
@@ -84,7 +84,7 @@ namespace Presentacion
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 68);
+            this.label2.Location = new System.Drawing.Point(27, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 2;
@@ -108,7 +108,7 @@ namespace Presentacion
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 103);
+            this.label3.Location = new System.Drawing.Point(36, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 4;
@@ -131,22 +131,22 @@ namespace Presentacion
             this.label4.TabIndex = 6;
             this.label4.Text = "Descripción:";
             // 
-            // CostoTextBox
+            // PrecioTextBox
             // 
-            this.CostoTextBox.Location = new System.Drawing.Point(100, 173);
-            this.CostoTextBox.Name = "CostoTextBox";
-            this.CostoTextBox.Size = new System.Drawing.Size(64, 20);
-            this.CostoTextBox.TabIndex = 9;
+            this.PrecioTextBox.Location = new System.Drawing.Point(100, 173);
+            this.PrecioTextBox.Name = "PrecioTextBox";
+            this.PrecioTextBox.Size = new System.Drawing.Size(64, 20);
+            this.PrecioTextBox.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(53, 174);
+            this.label5.Location = new System.Drawing.Point(45, 173);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 15);
+            this.label5.Size = new System.Drawing.Size(53, 15);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Costo *:";
+            this.label5.Text = "Precio *:";
             // 
             // PresentacionComboBox
             // 
@@ -161,7 +161,7 @@ namespace Presentacion
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 210);
+            this.label6.Location = new System.Drawing.Point(4, 210);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 15);
             this.label6.TabIndex = 10;
@@ -209,8 +209,8 @@ namespace Presentacion
             this.ProductoDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.ProductoDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.ProductoDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ProductoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ProductoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ProductoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductoDataGridView.Location = new System.Drawing.Point(384, 36);
             this.ProductoDataGridView.Name = "ProductoDataGridView";
@@ -289,11 +289,6 @@ namespace Presentacion
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
-            // conjuntoDatos1
-            // 
-            this.conjuntoDatos1.DataSetName = "ConjuntoDatos";
-            this.conjuntoDatos1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // AbrirCategoriasButton
             // 
             this.AbrirCategoriasButton.IconChar = FontAwesome.Sharp.IconChar.Search;
@@ -328,6 +323,11 @@ namespace Presentacion
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // conjuntoDatos1
+            // 
+            this.conjuntoDatos1.DataSetName = "ConjuntoDatos";
+            this.conjuntoDatos1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +345,7 @@ namespace Presentacion
             this.Controls.Add(this.label7);
             this.Controls.Add(this.PresentacionComboBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.CostoTextBox);
+            this.Controls.Add(this.PrecioTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DescripcionTextBox);
             this.Controls.Add(this.label4);
@@ -358,13 +358,13 @@ namespace Presentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormProductos";
+            this.Text = "Productos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conjuntoDatos1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,7 +380,7 @@ namespace Presentacion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DescripcionTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox CostoTextBox;
+        private System.Windows.Forms.TextBox PrecioTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox PresentacionComboBox;
         private System.Windows.Forms.Label label6;
