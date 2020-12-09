@@ -92,6 +92,7 @@ namespace Presentacion
             // 
             // CantidadTextBox
             // 
+            this.CantidadTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.CantidadTextBox.Location = new System.Drawing.Point(100, 67);
             this.CantidadTextBox.Name = "CantidadTextBox";
             this.CantidadTextBox.Size = new System.Drawing.Size(64, 20);
@@ -99,6 +100,7 @@ namespace Presentacion
             // 
             // ArticuloTextBox
             // 
+            this.ArticuloTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.ArticuloTextBox.Location = new System.Drawing.Point(100, 102);
             this.ArticuloTextBox.Name = "ArticuloTextBox";
             this.ArticuloTextBox.Size = new System.Drawing.Size(176, 20);
@@ -116,6 +118,7 @@ namespace Presentacion
             // 
             // DescripcionTextBox
             // 
+            this.DescripcionTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.DescripcionTextBox.Location = new System.Drawing.Point(100, 138);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
             this.DescripcionTextBox.Size = new System.Drawing.Size(265, 20);
@@ -133,6 +136,7 @@ namespace Presentacion
             // 
             // PrecioTextBox
             // 
+            this.PrecioTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PrecioTextBox.Location = new System.Drawing.Point(100, 173);
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.Size = new System.Drawing.Size(64, 20);
@@ -357,9 +361,8 @@ namespace Presentacion
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormProductos";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoDataGridView)).EndInit();
