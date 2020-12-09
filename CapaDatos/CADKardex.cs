@@ -36,9 +36,10 @@ namespace CapaDatos
 
             if (miTabla.Rows.Count == 0) return miKardex;
             KardexRow miRegistro = (KardexRow)miTabla.Rows[0];
-            
+
             miKardex = new ENTKardex
             {
+                IDKardex = miRegistro.IDKardex,
                 Fecha = miRegistro.Fecha,
                 Concepto = miRegistro.Concepto,
                 Entrada = (float)miRegistro.Entrada,

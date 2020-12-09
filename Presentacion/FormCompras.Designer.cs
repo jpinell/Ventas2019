@@ -49,6 +49,7 @@ namespace Presentacion
             this.GuardarButton = new FontAwesome.Sharp.IconButton();
             this.AgregarButton = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.AbrirProductosButton = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -229,6 +230,7 @@ namespace Presentacion
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // AgregarButton
             // 
@@ -258,12 +260,27 @@ namespace Presentacion
             this.dataGridView1.Size = new System.Drawing.Size(1007, 342);
             this.dataGridView1.TabIndex = 35;
             // 
+            // AbrirProductosButton
+            // 
+            this.AbrirProductosButton.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.AbrirProductosButton.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.AbrirProductosButton.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.AbrirProductosButton.IconSize = 16;
+            this.AbrirProductosButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AbrirProductosButton.Location = new System.Drawing.Point(359, 142);
+            this.AbrirProductosButton.Name = "AbrirProductosButton";
+            this.AbrirProductosButton.Size = new System.Drawing.Size(26, 24);
+            this.AbrirProductosButton.TabIndex = 36;
+            this.AbrirProductosButton.UseVisualStyleBackColor = true;
+            this.AbrirProductosButton.Click += new System.EventHandler(this.AbrirProductosButton_Click);
+            // 
             // FormCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1027, 608);
+            this.Controls.Add(this.AbrirProductosButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.AgregarButton);
             this.Controls.Add(this.GuardarButton);
@@ -318,5 +335,6 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton GuardarButton;
         private FontAwesome.Sharp.IconButton AgregarButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private FontAwesome.Sharp.IconButton AbrirProductosButton;
     }
 }

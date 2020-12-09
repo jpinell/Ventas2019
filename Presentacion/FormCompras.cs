@@ -14,6 +14,7 @@ namespace Presentacion
 {
     public partial class FormCompras : Form
     {
+
         List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
         int vidProducto;
 
@@ -71,6 +72,26 @@ namespace Presentacion
             catch (Exception)
             {
             }
+        }
+
+        private void AbrirProductosButton_Click(object sender, EventArgs e)
+        {
+            int Cantidad = 0;
+            int Precio = 0;
+            FormProductos form = new FormProductos(Cantidad, Precio);
+
+            form.ShowDialog();
+
+            CargarProductos();
+        }
+
+        private void GuardarButton_Click(object sender, EventArgs e)
+        {
+            // GUARDAR EN COMPRAS Y COMPRAS DETALLES
+
+            // GUARDAR EN KARDEX
+
+            // ACTUALIZAR LA TABLA PRODUCTOS
         }
     }
 }

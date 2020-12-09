@@ -14,6 +14,20 @@ namespace Presentacion
         }
 
 
+        public FormProductos(int Cantidad, int Precio)
+        {
+            InitializeComponent();
+
+            /* Cuando se llama desde el boton de agregar nuevo producto desde el formulario
+             * de compras, se llama a este constructor y pone en valor 0 la caja de texto
+             * Cantidad y Precio.
+             */
+            CantidadTextBox.Text = Cantidad.ToString();
+            CantidadTextBox.ReadOnly = true;
+            PrecioTextBox.Text = Precio.ToString();
+            PrecioTextBox.ReadOnly = true;
+        }
+
         private int vidCategoria, vidPresentacion, vidProducto;
 
         private void CerrarPictureBox_Click(object sender, EventArgs e)
@@ -23,6 +37,8 @@ namespace Presentacion
 
         private void FormProductos_Load(object sender, EventArgs e)
         {
+            //CantidadTextBox.Text = FormCompras.can
+
             ListarProductos();
             //Establecer formato personalizado al DataGridView
             BLFormatoGrid.FormatoGrid(ProductoDataGridView);
