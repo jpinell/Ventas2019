@@ -1,6 +1,7 @@
 ﻿using CapaEntidades;
 using CapaNegocios;
 using System;
+using System.Runtime.InteropServices;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -28,12 +29,19 @@ namespace Presentacion
             PrecioTextBox.ReadOnly = true;
         }
 
-        private int vidCategoria, vidPresentacion, vidProducto;
+        private int vidCategoria, vidPresentacion; // vidProducto;
 
         private void CerrarPictureBox_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        #region PLACEHOLDER
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam,
+        [MarshalAs(UnmanagedType.LPWStr)] string lParam);
+        private const int EM_SETCUEBANNER = 0x1501;
+        #endregion
 
         private void FormProductos_Load(object sender, EventArgs e)
         {
@@ -46,6 +54,30 @@ namespace Presentacion
             ListarPresentacion();
             BLBotones.HabilitarBotones(true, GuardarButton, ActualizarButton, EliminarButton);
 
+            SendMessage(ArticuloTextBox.Handle, EM_SETCUEBANNER, 0, "Nombre del Artículo"); //PLACEHOLDER
+
+            //Inhabilitar click derecho y boton teclado de opction menu
+            ContextMenu _blankContextMenu = new ContextMenu();
+            ArticuloTextBox.ContextMenu = _blankContextMenu;
+            PrecioTextBox.ContextMenu = _blankContextMenu;
+            DescripcionTextBox.ContextMenu = _blankContextMenu;
+
+        }
+
+        private const Keys CopyKeys = Keys.Control | Keys.C;
+        private const Keys PasteKeys = Keys.Control | Keys.V;
+        private const Keys CutKeys = Keys.Control | Keys.X;
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == CopyKeys) || (keyData == PasteKeys) || (keyData == CutKeys))
+            {
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
         }
 
         private void ListarPresentacion()

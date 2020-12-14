@@ -200,6 +200,7 @@ namespace Presentacion
             // 
             // CancelarButton
             // 
+            this.CancelarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CancelarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelarButton.IconChar = FontAwesome.Sharp.IconChar.Undo;
             this.CancelarButton.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -217,6 +218,7 @@ namespace Presentacion
             // 
             // EliminarButton
             // 
+            this.EliminarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EliminarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EliminarButton.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
             this.EliminarButton.IconColor = System.Drawing.Color.DarkRed;
@@ -233,6 +235,8 @@ namespace Presentacion
             // 
             // ActualizarButton
             // 
+            this.ActualizarButton.BackColor = System.Drawing.Color.White;
+            this.ActualizarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ActualizarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ActualizarButton.IconChar = FontAwesome.Sharp.IconChar.Edit;
             this.ActualizarButton.IconColor = System.Drawing.Color.Navy;
@@ -245,11 +249,12 @@ namespace Presentacion
             this.ActualizarButton.TabIndex = 11;
             this.ActualizarButton.Text = "Actualizar";
             this.ActualizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ActualizarButton.UseVisualStyleBackColor = true;
+            this.ActualizarButton.UseVisualStyleBackColor = false;
             this.ActualizarButton.Click += new System.EventHandler(this.ActualizarButton_Click);
             // 
             // GuardarButton
             // 
+            this.GuardarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GuardarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GuardarButton.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.GuardarButton.IconColor = System.Drawing.Color.DarkGreen;

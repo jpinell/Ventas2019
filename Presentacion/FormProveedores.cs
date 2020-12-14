@@ -66,6 +66,23 @@ namespace Presentacion
             RucTextBox.Focus();
         }
 
+        //private void ObservacionestextBox_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    ObservacionestextBox.Text = ReducirEspaciado(ObservacionestextBox.Text);
+        //    ObservacionestextBox.SelectionStart = ObservacionestextBox.Text.Length;
+        //}
+
+        //Evitar espacios en blanco
+        public static string ReducirEspaciado(string Cadena)
+        {
+            while (Cadena.Contains("  "))
+            {
+                Cadena = Cadena.Replace("  ", " ");
+            }
+
+            return Cadena.TrimStart();
+        }
+
         private bool ValidarCampos()
         {
             if(RucTextBox.Text == string.Empty)
