@@ -62,6 +62,12 @@
     <Compile Include="FormCompras.Designer.cs">
       <DependentUpon>FormCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExcel.Designer.cs">
+      <DependentUpon>FormExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormKardex.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompras.resx">
       <DependentUpon>FormCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExcel.resx">
+      <DependentUpon>FormExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormKardex.resx">
       <DependentUpon>FormKardex.cs</DependentUpon>
