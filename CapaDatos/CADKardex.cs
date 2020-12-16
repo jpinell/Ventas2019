@@ -29,6 +29,11 @@ namespace CapaDatos
                 k.IDProducto);
         }
 
+        public static int SelectIDKardexByIDProducto(int IDProducto)
+        {
+            return (int)adaptador.SelectIDKardexByIDProducto(IDProducto);
+        }
+
         public static ENTKardex SelectKardexByIDProducto(int IDProducto)
         {
             ENTKardex miKardex = null;
