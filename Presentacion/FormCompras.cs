@@ -2,21 +2,16 @@
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
 {
     public partial class FormCompras : Form
     {
+        private List<CompraDetalle> misDetalles = new List<CompraDetalle>();
+        private int vidProducto;
 
-        List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
-        int vidProducto;
+        private decimal TotalFactura;
 
         public FormCompras()
         {
@@ -52,15 +47,47 @@ namespace Presentacion
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-            ENTCompraDetalle cd = new ENTCompraDetalle();
+            CompraDetalle cd = new CompraDetalle();
 
             cd.Cantidad = float.Parse(CantidadTextBox.Text);
             cd.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
             cd.Descripcion = DescripcionTextBox.Text;
-            cd.IDCompra = 1; // OJO
-            cd.IDKardex = 1; // OJO
+            //cd.IDCompra = 1; // OJO
+            //cd.IDKardex = BLKardex.SelectIDKardexByIDProducto(vidProducto);
             cd.IDProducto = vidProducto;
+            misDetalles.Add(cd);
 
+            CargarDatos();
+        }
+
+        private void CargarDatos()
+        {
+            DetallesDataGridView.DataSource = null;
+            DetallesDataGridView.DataSource = misDetalles;
+
+            FormatoDatos();
+
+            TotalFactura = 0;
+            foreach (CompraDetalle miDetalle in misDetalles)
+            {
+                TotalFactura += miDetalle.SubTotal;
+            }
+
+            TotalFacturaTextBox.Text = string.Format("{0:N2}", TotalFactura);
+        }
+
+        private void FormatoDatos()
+        {
+            DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+            DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            DetallesDataGridView.Columns["CostoUnitario"].DefaultCellStyle.Format = "N2";
+            DetallesDataGridView.Columns["CostoUnitario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            DetallesDataGridView.Columns["SubTotal"].DefaultCellStyle.Format = "N2";
+            DetallesDataGridView.Columns["SubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            BLFormatoGrid.FormatoGrid(DetallesDataGridView);
         }
 
         private void ProductoComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,10 +115,50 @@ namespace Presentacion
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             // GUARDAR EN COMPRAS Y COMPRAS DETALLES
+            //foreach (ENTDetalleFactura miDetalle in misDetallesFactura)
+            //{
+            //    BLdetallefactura.InsertarDetalleFactura(miDetalle);
+            //}
 
+            //MessageBox.Show("Guardado correctamente", "Detalle de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
             // GUARDAR EN KARDEX
 
             // ACTUALIZAR LA TABLA PRODUCTOS
         }
+
+        private void FormCompras_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (misDetalles.Count != 0)
+            {
+                DialogResult rta = MessageBox.Show("¿Está seguro de cerrar el formulario de compras" +
+                " y perder los registros ingresados?", "Confirmación", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (rta == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        //ELIMINAR FILA
+        //RECORREMOS LOS ELEMENTOS GUARDADOS EN LA LISTA
+        //        for (int i = 0; i<misDetallesFactura.Count; i++)
+        //        {
+        //            //COMPROBAMOS QUE LA FILA SELECCIONADA ES IGUAL AL DE LA LISTA
+        //            if (i == fila)
+        //            {
+        //                misDetallesFactura.RemoveAt(fila);
+        //            }
+
+        ////ACTUALIZAMOS LA LISTA Y EL DATAGRIDVIEW
+        //dgv.DataSource = null;
+        //            dgv.DataSource = misDetallesFactura;
+        //        }
+
+        //FILA ACTUAL
+        //NUMERO DE FILA EN EL DATAGRIDVIEW
+        //fila = dgv.CurrentRow.Index;
+
+        //    lblFila.Text = "Fila: " + fila.ToString();
     }
 }
