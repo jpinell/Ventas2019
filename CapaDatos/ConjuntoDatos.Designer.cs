@@ -48,8 +48,6 @@ namespace CapaDatos {
         
         private global::System.Data.DataRelation relationFK_CompraDetalle_Compras;
         
-        private global::System.Data.DataRelation relationFK_CompraDetalle_Kardex;
-        
         private global::System.Data.DataRelation relationFK_CompraDetalle_Productos;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -357,7 +355,6 @@ namespace CapaDatos {
             this.relationFK_Kardex_Productos = this.Relations["FK_Kardex_Productos"];
             this.relationFK_Compras_Proveedores = this.Relations["FK_Compras_Proveedores"];
             this.relationFK_CompraDetalle_Compras = this.Relations["FK_CompraDetalle_Compras"];
-            this.relationFK_CompraDetalle_Kardex = this.Relations["FK_CompraDetalle_Kardex"];
             this.relationFK_CompraDetalle_Productos = this.Relations["FK_CompraDetalle_Productos"];
         }
         
@@ -403,10 +400,6 @@ namespace CapaDatos {
                         this.tableCompras.IDCompraColumn}, new global::System.Data.DataColumn[] {
                         this.tableCompraDetalle.IDCompraColumn}, false);
             this.Relations.Add(this.relationFK_CompraDetalle_Compras);
-            this.relationFK_CompraDetalle_Kardex = new global::System.Data.DataRelation("FK_CompraDetalle_Kardex", new global::System.Data.DataColumn[] {
-                        this.tableKardex.IDKardexColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCompraDetalle.IDKardexColumn}, false);
-            this.Relations.Add(this.relationFK_CompraDetalle_Kardex);
             this.relationFK_CompraDetalle_Productos = new global::System.Data.DataRelation("FK_CompraDetalle_Productos", new global::System.Data.DataColumn[] {
                         this.tableProductos.IDProductoColumn}, new global::System.Data.DataColumn[] {
                         this.tableCompraDetalle.IDProductoColumn}, false);
@@ -2567,8 +2560,6 @@ namespace CapaDatos {
             
             private global::System.Data.DataColumn columnSubTotal;
             
-            private global::System.Data.DataColumn columnIDKardex;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public CompraDetalleDataTable() {
@@ -2660,14 +2651,6 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IDKardexColumn {
-                get {
-                    return this.columnIDKardex;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2703,7 +2686,7 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CompraDetalleRow AddCompraDetalleRow(ComprasRow parentComprasRowByFK_CompraDetalle_Compras, double Cantidad, ProductosRow parentProductosRowByFK_CompraDetalle_Productos, string Descripcion, decimal CostoUnitario, double SubTotal, KardexRow parentKardexRowByFK_CompraDetalle_Kardex) {
+            public CompraDetalleRow AddCompraDetalleRow(ComprasRow parentComprasRowByFK_CompraDetalle_Compras, double Cantidad, ProductosRow parentProductosRowByFK_CompraDetalle_Productos, string Descripcion, decimal CostoUnitario, double SubTotal) {
                 CompraDetalleRow rowCompraDetalleRow = ((CompraDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2712,16 +2695,12 @@ namespace CapaDatos {
                         null,
                         Descripcion,
                         CostoUnitario,
-                        SubTotal,
-                        null};
+                        SubTotal};
                 if ((parentComprasRowByFK_CompraDetalle_Compras != null)) {
                     columnValuesArray[1] = parentComprasRowByFK_CompraDetalle_Compras[0];
                 }
                 if ((parentProductosRowByFK_CompraDetalle_Productos != null)) {
                     columnValuesArray[3] = parentProductosRowByFK_CompraDetalle_Productos[0];
-                }
-                if ((parentKardexRowByFK_CompraDetalle_Kardex != null)) {
-                    columnValuesArray[7] = parentKardexRowByFK_CompraDetalle_Kardex[0];
                 }
                 rowCompraDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCompraDetalleRow);
@@ -2759,7 +2738,6 @@ namespace CapaDatos {
                 this.columnDescripcion = base.Columns["Descripcion"];
                 this.columnCostoUnitario = base.Columns["CostoUnitario"];
                 this.columnSubTotal = base.Columns["SubTotal"];
-                this.columnIDKardex = base.Columns["IDKardex"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2779,8 +2757,6 @@ namespace CapaDatos {
                 base.Columns.Add(this.columnCostoUnitario);
                 this.columnSubTotal = new global::System.Data.DataColumn("SubTotal", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSubTotal);
-                this.columnIDKardex = new global::System.Data.DataColumn("IDKardex", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIDKardex);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDCompraDetalle}, true));
                 this.columnIDCompraDetalle.AutoIncrement = true;
@@ -2796,7 +2772,6 @@ namespace CapaDatos {
                 this.columnDescripcion.MaxLength = 50;
                 this.columnCostoUnitario.AllowDBNull = false;
                 this.columnSubTotal.ReadOnly = true;
-                this.columnIDKardex.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3339,17 +3314,6 @@ namespace CapaDatos {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Kardex_Productos"]);
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CompraDetalleRow[] GetCompraDetalleRows() {
-                if ((this.Table.ChildRelations["FK_CompraDetalle_Kardex"] == null)) {
-                    return new CompraDetalleRow[0];
-                }
-                else {
-                    return ((CompraDetalleRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CompraDetalle_Kardex"])));
-                }
-            }
         }
         
         /// <summary>
@@ -3623,34 +3587,12 @@ namespace CapaDatos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int IDKardex {
-                get {
-                    return ((int)(this[this.tableCompraDetalle.IDKardexColumn]));
-                }
-                set {
-                    this[this.tableCompraDetalle.IDKardexColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ComprasRow ComprasRow {
                 get {
                     return ((ComprasRow)(this.GetParentRow(this.Table.ParentRelations["FK_CompraDetalle_Compras"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_CompraDetalle_Compras"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public KardexRow KardexRow {
-                get {
-                    return ((KardexRow)(this.GetParentRow(this.Table.ParentRelations["FK_CompraDetalle_Kardex"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CompraDetalle_Kardex"]);
                 }
             }
             
@@ -7027,11 +6969,10 @@ SELECT IDCompra, IDProveedor, Fecha, NoFactura FROM Compras WHERE (IDCompra = @I
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
             tableMapping.ColumnMappings.Add("CostoUnitario", "CostoUnitario");
             tableMapping.ColumnMappings.Add("SubTotal", "SubTotal");
-            tableMapping.ColumnMappings.Add("IDKardex", "IDKardex");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CompraDetalle] WHERE (([IDCompraDetalle] = @Original_IDCompraDetalle) AND ([IDCompra] = @Original_IDCompra) AND ([Cantidad] = @Original_Cantidad) AND ([IDProducto] = @Original_IDProducto) AND ([Descripcion] = @Original_Descripcion) AND ([CostoUnitario] = @Original_CostoUnitario) AND ((@IsNull_SubTotal = 1 AND [SubTotal] IS NULL) OR ([SubTotal] = @Original_SubTotal)) AND ([IDKardex] = @Original_IDKardex))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CompraDetalle] WHERE (([IDCompraDetalle] = @Original_IDCompraDetalle) AND ([IDCompra] = @Original_IDCompra) AND ([Cantidad] = @Original_Cantidad) AND ([IDProducto] = @Original_IDProducto) AND ([Descripcion] = @Original_Descripcion) AND ([CostoUnitario] = @Original_CostoUnitario) AND ((@IsNull_SubTotal = 1 AND [SubTotal] IS NULL) OR ([SubTotal] = @Original_SubTotal)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCompraDetalle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompraDetalle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCompra", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompra", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -7041,29 +6982,26 @@ SELECT IDCompra, IDProveedor, Fecha, NoFactura FROM Compras WHERE (IDCompra = @I
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CostoUnitario", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CostoUnitario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SubTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubTotal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubTotal", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubTotal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDKardex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDKardex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CompraDetalle] ([IDCompra], [Cantidad], [IDProducto], [Descripcion], [CostoUnitario], [IDKardex]) VALUES (@IDCompra, @Cantidad, @IDProducto, @Descripcion, @CostoUnitario, @IDKardex);
-SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, SubTotal, IDKardex FROM CompraDetalle WHERE (IDCompraDetalle = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CompraDetalle] ([IDCompra], [Cantidad], [IDProducto], [Descripcion], [CostoUnitario]) VALUES (@IDCompra, @Cantidad, @IDProducto, @Descripcion, @CostoUnitario);
+SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, SubTotal FROM CompraDetalle WHERE (IDCompraDetalle = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCompra", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompra", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProducto", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDProducto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CostoUnitario", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CostoUnitario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDKardex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDKardex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CompraDetalle] SET [IDCompra] = @IDCompra, [Cantidad] = @Cantidad, [IDProducto] = @IDProducto, [Descripcion] = @Descripcion, [CostoUnitario] = @CostoUnitario, [IDKardex] = @IDKardex WHERE (([IDCompraDetalle] = @Original_IDCompraDetalle) AND ([IDCompra] = @Original_IDCompra) AND ([Cantidad] = @Original_Cantidad) AND ([IDProducto] = @Original_IDProducto) AND ([Descripcion] = @Original_Descripcion) AND ([CostoUnitario] = @Original_CostoUnitario) AND ((@IsNull_SubTotal = 1 AND [SubTotal] IS NULL) OR ([SubTotal] = @Original_SubTotal)) AND ([IDKardex] = @Original_IDKardex));
-SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, SubTotal, IDKardex FROM CompraDetalle WHERE (IDCompraDetalle = @IDCompraDetalle)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CompraDetalle] SET [IDCompra] = @IDCompra, [Cantidad] = @Cantidad, [IDProducto] = @IDProducto, [Descripcion] = @Descripcion, [CostoUnitario] = @CostoUnitario WHERE (([IDCompraDetalle] = @Original_IDCompraDetalle) AND ([IDCompra] = @Original_IDCompra) AND ([Cantidad] = @Original_Cantidad) AND ([IDProducto] = @Original_IDProducto) AND ([Descripcion] = @Original_Descripcion) AND ([CostoUnitario] = @Original_CostoUnitario) AND ((@IsNull_SubTotal = 1 AND [SubTotal] IS NULL) OR ([SubTotal] = @Original_SubTotal)));
+SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, SubTotal FROM CompraDetalle WHERE (IDCompraDetalle = @IDCompraDetalle)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCompra", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompra", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProducto", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDProducto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CostoUnitario", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CostoUnitario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDKardex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDKardex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCompraDetalle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompraDetalle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDCompra", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompra", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cantidad", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cantidad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -7072,7 +7010,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CostoUnitario", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CostoUnitario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SubTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubTotal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubTotal", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubTotal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDKardex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDKardex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCompraDetalle", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDCompraDetalle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -7090,7 +7027,7 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitari" +
-                "o, SubTotal, IDKardex FROM dbo.CompraDetalle";
+                "o, SubTotal FROM dbo.CompraDetalle";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -7102,7 +7039,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProducto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CostoUnitario", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDKardex", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7162,7 +7098,7 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal, int Original_IDKardex) {
+        public virtual int Delete(int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IDCompraDetalle));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IDCompra));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((double)(Original_Cantidad));
@@ -7182,7 +7118,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_IDKardex));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7203,7 +7138,7 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int IDKardex) {
+        public virtual int Insert(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IDCompra));
             this.Adapter.InsertCommand.Parameters[1].Value = ((double)(Cantidad));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IDProducto));
@@ -7214,7 +7149,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Descripcion));
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(CostoUnitario));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(IDKardex));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7235,7 +7169,7 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int IDKardex, int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal, int Original_IDKardex, int IDCompraDetalle) {
+        public virtual int Update(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal, int IDCompraDetalle) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IDCompra));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(Cantidad));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IDProducto));
@@ -7246,28 +7180,26 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Descripcion));
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(CostoUnitario));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(IDKardex));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_IDCompraDetalle));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_IDCompra));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((double)(Original_Cantidad));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_IDProducto));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IDCompraDetalle));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_IDCompra));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((double)(Original_Cantidad));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_IDProducto));
             if ((Original_Descripcion == null)) {
                 throw new global::System.ArgumentNullException("Original_Descripcion");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Descripcion));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Descripcion));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_CostoUnitario));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_CostoUnitario));
             if ((Original_SubTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(Original_SubTotal.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((double)(Original_SubTotal.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_IDKardex));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(IDCompraDetalle));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(IDCompraDetalle));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7288,15 +7220,15 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int IDKardex, int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal, int Original_IDKardex) {
-            return this.Update(IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, IDKardex, Original_IDCompraDetalle, Original_IDCompra, Original_Cantidad, Original_IDProducto, Original_Descripcion, Original_CostoUnitario, Original_SubTotal, Original_IDKardex, Original_IDCompraDetalle);
+        public virtual int Update(int IDCompra, double Cantidad, int IDProducto, string Descripcion, decimal CostoUnitario, int Original_IDCompraDetalle, int Original_IDCompra, double Original_Cantidad, int Original_IDProducto, string Original_Descripcion, decimal Original_CostoUnitario, global::System.Nullable<double> Original_SubTotal) {
+            return this.Update(IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitario, Original_IDCompraDetalle, Original_IDCompra, Original_Cantidad, Original_IDProducto, Original_Descripcion, Original_CostoUnitario, Original_SubTotal, Original_IDCompraDetalle);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertCompraDetalle(global::System.Nullable<int> IDCompra, global::System.Nullable<double> Cantidad, global::System.Nullable<int> IDProducto, string Descripcion, global::System.Nullable<decimal> CostoUnitario, global::System.Nullable<int> IDKardex) {
+        public virtual int InsertCompraDetalle(global::System.Nullable<int> IDCompra, global::System.Nullable<double> Cantidad, global::System.Nullable<int> IDProducto, string Descripcion, global::System.Nullable<decimal> CostoUnitario) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((IDCompra.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(IDCompra.Value));
@@ -7327,12 +7259,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
             }
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((IDKardex.HasValue == true)) {
-                command.Parameters[6].Value = ((int)(IDKardex.Value));
-            }
-            else {
-                command.Parameters[6].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7601,15 +7527,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._productosTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._productosTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._proveedoresTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Proveedores.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -7619,12 +7536,12 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._kardexTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._kardexTableAdapter.Update(updatedRows));
+                    result = (result + this._productosTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7634,6 +7551,15 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._comprasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._kardexTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._kardexTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7672,14 +7598,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._productosTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._productosTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._proveedoresTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Proveedores.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -7688,11 +7606,11 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._kardexTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._kardexTableAdapter.Update(addedRows));
+                    result = (result + this._productosTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7701,6 +7619,14 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._comprasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._kardexTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._kardexTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7730,14 +7656,6 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._comprasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._comprasTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._kardexTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -7746,11 +7664,11 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._proveedoresTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Proveedores.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._comprasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._proveedoresTableAdapter.Update(deletedRows));
+                    result = (result + this._comprasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7759,6 +7677,14 @@ SELECT IDCompraDetalle, IDCompra, Cantidad, IDProducto, Descripcion, CostoUnitar
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._productosTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._proveedoresTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Proveedores.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._proveedoresTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

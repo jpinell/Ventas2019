@@ -14,7 +14,13 @@ namespace CapaDatos
 
         public static void InsertCompraDetalle(ENTCompraDetalle cd)
         {
-            adaptador.InsertCompraDetalle(cd.IDCompra, cd.Cantidad, cd.IDProducto, cd.Descripcion, cd.CostoUnitario, cd.IDKardex);
+            adaptador.InsertCompraDetalle(
+                cd.IDCompra, 
+                cd.Cantidad, 
+                cd.IDProducto, 
+                cd.Descripcion, 
+                cd.CostoUnitario
+                );
         }
     }
 }

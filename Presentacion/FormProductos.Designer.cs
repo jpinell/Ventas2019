@@ -275,6 +275,7 @@ namespace Presentacion
             this.ActualizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ActualizarButton.UseVisualStyleBackColor = true;
             this.ActualizarButton.Visible = false;
+            this.ActualizarButton.Click += new System.EventHandler(this.ActualizarButton_Click);
             // 
             // GuardarButton
             // 

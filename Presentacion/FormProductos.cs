@@ -262,6 +262,11 @@ namespace Presentacion
             errorProvider1.Dispose(); //QUITAR EL ICONO DEL ERROR!!!
         }
 
+        private void ActualizarButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void CategoriaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

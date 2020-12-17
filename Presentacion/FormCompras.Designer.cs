@@ -29,6 +29,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CerrarPictureBox = new FontAwesome.Sharp.IconPictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,8 +53,10 @@ namespace Presentacion
             this.AbrirProductosButton = new FontAwesome.Sharp.IconButton();
             this.label8 = new System.Windows.Forms.Label();
             this.TotalFacturaTextBox = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // CerrarPictureBox
@@ -102,6 +105,7 @@ namespace Presentacion
             this.ProveedorComboBox.Name = "ProveedorComboBox";
             this.ProveedorComboBox.Size = new System.Drawing.Size(238, 21);
             this.ProveedorComboBox.TabIndex = 1;
+            this.ProveedorComboBox.SelectedIndexChanged += new System.EventHandler(this.ProveedorComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -301,6 +305,10 @@ namespace Presentacion
             this.TotalFacturaTextBox.TabIndex = 24;
             this.TotalFacturaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FormCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +346,7 @@ namespace Presentacion
             this.Load += new System.EventHandler(this.FormCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,5 +377,6 @@ namespace Presentacion
         private FontAwesome.Sharp.IconButton AbrirProductosButton;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TotalFacturaTextBox;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
