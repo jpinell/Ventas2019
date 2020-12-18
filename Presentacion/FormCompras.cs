@@ -9,9 +9,9 @@ namespace Presentacion
 {
     public partial class FormCompras : Form
     {
-        private List<CompraDetalle> misDetalles = new List<CompraDetalle>();
-        private int vidProveedor, vidProducto;
+        private List<CompraDetalle> Lista = new List<CompraDetalle>();
 
+        private int vidProveedor, vidProducto;
         private decimal TotalFactura;
 
         public FormCompras()
@@ -50,34 +50,39 @@ namespace Presentacion
         {
             if (!ValidarCampos()) return;
             {
-                CompraDetalle cd = new CompraDetalle();
+                CompraDetalle Registro = new CompraDetalle();
 
-                cd.Cantidad = float.Parse(CantidadTextBox.Text);
-                cd.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
-                cd.Descripcion = DescripcionTextBox.Text;
-                //cd.IDCompra = 1; // OJO
-                //cd.IDKardex = BLKardex.SelectIDKardexByIDProducto(vidProducto);
-                cd.IDProducto = vidProducto;
-                misDetalles.Add(cd);
+                Registro.Cantidad = float.Parse(CantidadTextBox.Text);
+                Registro.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
+                Registro.Descripcion = DescripcionTextBox.Text;
+                Registro.IDProducto = vidProducto;
+                Lista.Add(Registro);
 
                 CargarDatos();
+
+                CantidadTextBox.Text = string.Empty;
+                ProductoComboBox.SelectedIndex = -1;
+                DescripcionTextBox.Text = string.Empty;
+                CostoUnitarioTextBox.Text = string.Empty;
+                CantidadTextBox.Focus();
             }
         }
 
         private void CargarDatos()
         {
             DetallesDataGridView.DataSource = null;
-            DetallesDataGridView.DataSource = misDetalles;
-
-            FormatoDatos();
+            DetallesDataGridView.DataSource = Lista;
 
             TotalFactura = 0;
-            foreach (CompraDetalle miDetalle in misDetalles)
+            //Actualiza los totales
+            foreach (CompraDetalle cd in Lista)
             {
-                TotalFactura += miDetalle.SubTotal;
+                TotalFactura += cd.SubTotal;
             }
 
             TotalFacturaTextBox.Text = string.Format("{0:N2}", TotalFactura);
+
+            FormatoDatos();
         }
 
         private void FormatoDatos()
@@ -132,29 +137,35 @@ namespace Presentacion
                     int IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
 
                     //RECORRE EL DATAGRID Y LO INSERTA EN LA TABLA COMPRADETALLE
-                    List<ENTCompraDetalle> misCompras = new List<ENTCompraDetalle>();
-                    
+                    List<ENTCompraDetalle> ListaCompras = new List<ENTCompraDetalle>();
+                    ENTCompraDetalle RegistrosCompras = new ENTCompraDetalle();
 
-                    foreach (ENTCompraDetalle miCompra in misCompras)
+                    CompraDetalle Registro = new CompraDetalle();
+
+                    RegistrosCompras.Cantidad = Registro.Cantidad;
+                    RegistrosCompras.CostoUnitario = Registro.CostoUnitario;
+                    RegistrosCompras.Descripcion = Registro.Descripcion;
+                    RegistrosCompras.IDProducto = Registro.IDProducto;
+                    RegistrosCompras.IDCompra = IDCompra;
+
+                    ListaCompras.Add(RegistrosCompras);
+
+                    foreach (ENTCompraDetalle miDetalle in ListaCompras)
                     {
-                        BLdetallefactura.InsertarDetalleFactura(miDetalle);
+                        BLCompraDetalle.InsertCompraDetalle(miDetalle);
                     }
 
+                    // ACTUALIZAR LA TABLA PRODUCTOS
 
-
+                    //GUARDAR EN KARDEX
+                    
+                    
                     scope.Complete();
+
+                    MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDCompra),
+                    "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
-
             }
-
-            
-
-            //MessageBox.Show("Guardado correctamente", "Detalle de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // GUARDAR EN KARDEX
-
-            // ACTUALIZAR LA TABLA PRODUCTOS
         }
 
         private bool ValidarCampos()
@@ -244,7 +255,7 @@ namespace Presentacion
 
         private void FormCompras_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (misDetalles.Count != 0)
+            if (Lista.Count != 0)
             {
                 DialogResult rta = MessageBox.Show("¿Está seguro de cerrar el formulario de compras" +
                 " y perder los registros ingresados?", "C O M P R A S", MessageBoxButtons.YesNo,
