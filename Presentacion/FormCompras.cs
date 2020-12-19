@@ -123,8 +123,8 @@ namespace Presentacion
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            if (!ValidarCampos()) return;
-            {
+            //if (!ValidarCampos()) return;
+            //{
                 // GUARDAR EN COMPRAS Y COMPRAS DETALLES
                 ENTCompra compra = new ENTCompra();
                 compra.Fecha = FechaDateTimePicker.Value;
@@ -155,11 +155,16 @@ namespace Presentacion
                         BLCompraDetalle.InsertCompraDetalle(miDetalle);
                     }
 
+                    //GUARDAR EN KARDEX
+                    ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registro.IDProducto);
+                    miKardex.Fecha = FechaDateTimePicker.Value;
+                    miKardex.Concepto = "COMPRA";
+                    miKardex.Existencia = miKardex.Existencia;
+
                     // ACTUALIZAR LA TABLA PRODUCTOS
 
 
 
-                    //GUARDAR EN KARDEX
                     
                     
                     scope.Complete();
@@ -167,7 +172,7 @@ namespace Presentacion
                     MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDCompra),
                     "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }
+            //}
         }
 
         private bool ValidarCampos()
