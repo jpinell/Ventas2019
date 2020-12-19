@@ -23,5 +23,17 @@ namespace CapaDatos
                 p.Precio,
                 p.IDPresentacion);
         }
+
+        public static void UpdateProducto(ENTProducto p)
+        {
+            adaptador.UpdateProducto(
+                p.IDCategoria, 
+                p.Cantidad, 
+                p.Articulo, 
+                p.Descripcion, 
+                p.Precio, 
+                p.IDPresentacion, 
+                p.IDProducto);
+        }
     }
 }
