@@ -14,7 +14,7 @@ namespace CapaDatos
 
         public static int InsertComprasGetIDCompra(ENTCompra c)
         {
-            return adaptador.InsertComprasGetIDCompra(c.IDProveedor, c.Fecha, c.NoFactura);
+            return (int)adaptador.InsertComprasGetIDCompra(c.IDProveedor, c.Fecha, c.NoFactura);
         }
 
     }
