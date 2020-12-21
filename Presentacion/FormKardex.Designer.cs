@@ -94,10 +94,16 @@ namespace Presentacion
             this.KardexDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.KardexDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.KardexDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.KardexDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.KardexDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KardexDataGridView.Location = new System.Drawing.Point(12, 62);
             this.KardexDataGridView.Name = "KardexDataGridView";
             this.KardexDataGridView.ReadOnly = true;
+            this.KardexDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.KardexDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.KardexDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.KardexDataGridView.Size = new System.Drawing.Size(776, 376);
             this.KardexDataGridView.TabIndex = 18;
             // 
