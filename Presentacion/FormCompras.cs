@@ -9,7 +9,8 @@ namespace Presentacion
 {
     public partial class FormCompras : Form
     {
-        private List<CompraDetalle> Lista = new List<CompraDetalle>();
+        private List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
+        //private ENTCompraDetalle Registros = new ENTCompraDetalle();
 
         private int vidProveedor, vidProducto;
         private decimal TotalFactura;
@@ -50,13 +51,13 @@ namespace Presentacion
         {
             if (!ValidarCampos()) return;
             {
-                CompraDetalle Registro = new CompraDetalle();
+                ENTCompraDetalle miDetalle = new ENTCompraDetalle();
 
-                Registro.Cantidad = float.Parse(CantidadTextBox.Text);
-                Registro.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
-                Registro.Descripcion = DescripcionTextBox.Text;
-                Registro.IDProducto = vidProducto;
-                Lista.Add(Registro);
+                miDetalle.Cantidad = float.Parse(CantidadTextBox.Text);
+                miDetalle.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
+                miDetalle.Descripcion = DescripcionTextBox.Text;
+                miDetalle.IDProducto = vidProducto;
+                misDetalles.Add(miDetalle);
 
                 CargarDatos();
 
@@ -71,11 +72,11 @@ namespace Presentacion
         private void CargarDatos()
         {
             DetallesDataGridView.DataSource = null;
-            DetallesDataGridView.DataSource = Lista;
+            DetallesDataGridView.DataSource = misDetalles;
 
             TotalFactura = 0;
             //Actualiza los totales
-            foreach (CompraDetalle cd in Lista)
+            foreach (ENTCompraDetalle cd in misDetalles)
             {
                 TotalFactura += cd.SubTotal;
             }
@@ -87,6 +88,9 @@ namespace Presentacion
 
         private void FormatoDatos()
         {
+            DetallesDataGridView.Columns["IDCompraDetalle"].Visible = false;
+            DetallesDataGridView.Columns["IDCompra"].Visible = false;
+
             DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
             DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -121,58 +125,50 @@ namespace Presentacion
             CargarProductos();
         }
 
+
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            //if (!ValidarCampos()) return;
-            //{
-                // GUARDAR EN COMPRAS Y COMPRAS DETALLES
-                ENTCompra compra = new ENTCompra();
-                compra.Fecha = FechaDateTimePicker.Value;
-                compra.IDProveedor = vidProveedor;
-                compra.NoFactura = FacturaTextBox.Text;
+            // GUARDAR EN COMPRAS Y COMPRAS DETALLES
+            ENTCompra compra = new ENTCompra();
+            compra.Fecha = FechaDateTimePicker.Value;
+            compra.IDProveedor = vidProveedor;
+            compra.NoFactura = FacturaTextBox.Text;
 
-                using (var scope = new TransactionScope())
+            using (var scope = new TransactionScope())
+            {
+                //INSERTA LA COMPRA Y RETORNA EL ID
+                int IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
+
+                //RECORRE EL DATAGRID Y LO INSERTA EN LA TABLA COMPRADETALLE
+                ENTCompraDetalle Registros = new ENTCompraDetalle();
+
+                foreach (DataGridViewRow filas in DetallesDataGridView.Rows)
                 {
-                    //INSERTA LA COMPRA Y RETORNA EL ID
-                    int IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
+                    Registros.Cantidad = float.Parse(filas.Cells["Cantidad"].Value.ToString());
+                    Registros.CostoUnitario = decimal.Parse(filas.Cells["CostoUnitario"].Value.ToString());
+                    Registros.Descripcion = filas.Cells["Descripcion"].Value.ToString();
+                    Registros.IDProducto = int.Parse(filas.Cells["IDProducto"].Value.ToString());
+                    Registros.IDCompra = IDCompra;
 
-                    //RECORRE EL DATAGRID Y LO INSERTA EN LA TABLA COMPRADETALLE
-                    List<ENTCompraDetalle> ListaCompras = new List<ENTCompraDetalle>();
-                    ENTCompraDetalle RegistrosCompras = new ENTCompraDetalle();
+                    misDetalles.Add(Registros);
 
-                    CompraDetalle Registro = new CompraDetalle();
+                    BLCompraDetalle.InsertCompraDetalle(Registros);
 
-                    RegistrosCompras.Cantidad = Registro.Cantidad;
-                    RegistrosCompras.CostoUnitario = Registro.CostoUnitario;
-                    RegistrosCompras.Descripcion = Registro.Descripcion;
-                    RegistrosCompras.IDProducto = Registro.IDProducto;
-                    RegistrosCompras.IDCompra = IDCompra;
-
-                    ListaCompras.Add(RegistrosCompras);
-
-                    foreach (ENTCompraDetalle miDetalle in ListaCompras)
-                    {
-                        BLCompraDetalle.InsertCompraDetalle(miDetalle);
-                    }
-
-                    //GUARDAR EN KARDEX
-                    ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registro.IDProducto);
-                    miKardex.Fecha = FechaDateTimePicker.Value;
-                    miKardex.Concepto = "COMPRA";
-                    miKardex.Existencia = miKardex.Existencia;
-
-                    // ACTUALIZAR LA TABLA PRODUCTOS
-
-
-
-                    
-                    
-                    scope.Complete();
-
-                    MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDCompra),
-                    "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            //}
+
+                //GUARDAR EN KARDEX
+                //ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(RegistrosCompras.IDProducto);
+                //    miKardex.Fecha = FechaDateTimePicker.Value;
+                //    miKardex.Concepto = "COMPRA";
+                //    miKardex.Existencia = miKardex.Existencia;
+
+                // ACTUALIZAR LA TABLA PRODUCTOS
+
+                scope.Complete();
+
+                MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDCompra),
+                "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private bool ValidarCampos()
@@ -262,7 +258,7 @@ namespace Presentacion
 
         private void FormCompras_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Lista.Count != 0)
+            if (misDetalles.Count != 0)
             {
                 DialogResult rta = MessageBox.Show("¿Está seguro de cerrar el formulario de compras" +
                 " y perder los registros ingresados?", "C O M P R A S", MessageBoxButtons.YesNo,

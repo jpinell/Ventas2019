@@ -92,7 +92,7 @@ namespace Presentacion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 40);
+            this.label1.Location = new System.Drawing.Point(29, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
@@ -100,8 +100,9 @@ namespace Presentacion
             // 
             // ProveedorComboBox
             // 
+            this.ProveedorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProveedorComboBox.FormattingEnabled = true;
-            this.ProveedorComboBox.Location = new System.Drawing.Point(84, 37);
+            this.ProveedorComboBox.Location = new System.Drawing.Point(94, 37);
             this.ProveedorComboBox.Name = "ProveedorComboBox";
             this.ProveedorComboBox.Size = new System.Drawing.Size(238, 21);
             this.ProveedorComboBox.TabIndex = 1;
@@ -110,7 +111,7 @@ namespace Presentacion
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 40);
+            this.label2.Location = new System.Drawing.Point(349, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 2;
@@ -119,7 +120,7 @@ namespace Presentacion
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(506, 40);
+            this.label3.Location = new System.Drawing.Point(516, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 4;
@@ -128,7 +129,7 @@ namespace Presentacion
             // FechaDateTimePicker
             // 
             this.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.FechaDateTimePicker.Location = new System.Drawing.Point(385, 38);
+            this.FechaDateTimePicker.Location = new System.Drawing.Point(395, 38);
             this.FechaDateTimePicker.Name = "FechaDateTimePicker";
             this.FechaDateTimePicker.Size = new System.Drawing.Size(102, 20);
             this.FechaDateTimePicker.TabIndex = 3;
@@ -137,7 +138,7 @@ namespace Presentacion
             // 
             this.FacturaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FacturaTextBox.ForeColor = System.Drawing.Color.Maroon;
-            this.FacturaTextBox.Location = new System.Drawing.Point(575, 32);
+            this.FacturaTextBox.Location = new System.Drawing.Point(585, 32);
             this.FacturaTextBox.Name = "FacturaTextBox";
             this.FacturaTextBox.Size = new System.Drawing.Size(115, 26);
             this.FacturaTextBox.TabIndex = 5;
@@ -174,10 +175,13 @@ namespace Presentacion
             // 
             // ProductoComboBox
             // 
+            this.ProductoComboBox.BackColor = System.Drawing.Color.White;
+            this.ProductoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductoComboBox.FormattingEnabled = true;
             this.ProductoComboBox.Location = new System.Drawing.Point(94, 144);
             this.ProductoComboBox.Name = "ProductoComboBox";
             this.ProductoComboBox.Size = new System.Drawing.Size(259, 21);
+            this.ProductoComboBox.Sorted = true;
             this.ProductoComboBox.TabIndex = 9;
             this.ProductoComboBox.SelectedIndexChanged += new System.EventHandler(this.ProductoComboBox_SelectedIndexChanged);
             // 
