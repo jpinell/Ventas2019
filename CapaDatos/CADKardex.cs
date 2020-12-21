@@ -34,6 +34,11 @@ namespace CapaDatos
             return (int)adaptador.SelectIDKardexByIDProducto(IDProducto);
         }
 
+        public static KardexDataTable SelectKardex(int IDProducto)
+        {
+            return adaptador.SelectKardex(IDProducto);
+        }
+
         public static ENTKardex SelectKardexByIDProducto(int IDProducto)
         {
             ENTKardex miKardex = null;

@@ -1,0 +1,79 @@
+﻿public partial class DetalleFactura : Form
+    {
+        BLDetalleFactura BLdetallefactura = new BLDetalleFactura();
+
+        List<ENTDetalleFactura> misDetallesFactura = new List<ENTDetalleFactura>();
+
+        int fila;
+
+        public DetalleFactura()
+        {
+            InitializeComponent();
+        }
+
+        private void cmdAgregar_Click(object sender, EventArgs e)
+        {
+
+            ENTDetalleFactura miDetalle = new ENTDetalleFactura();            
+            
+            miDetalle.IDFactura = Convert.ToInt32(comboFactura.Text);
+            miDetalle.Cantidad = Convert.ToInt32(txtCantidad.Text);
+            miDetalle.Descripcion = txtDescripcion.Text;
+            miDetalle.PrecioUnitario = Convert.ToDecimal(txtPU.Text);
+            miDetalle.SubTotal = miDetalle.Cantidad * miDetalle.PrecioUnitario;
+
+            misDetallesFactura.Add(miDetalle);
+            
+            dgv.DataSource = null;
+            dgv.DataSource = misDetallesFactura;
+
+            LimpiarDatos();
+
+        }
+
+        private void LimpiarDatos()
+        {
+            txtCantidad.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            txtPU.Text = string.Empty;
+            
+            txtCantidad.Focus();
+        }
+
+        private void cmdGuardar_Click(object sender, EventArgs e)
+        {
+            foreach (ENTDetalleFactura miDetalle in misDetallesFactura)
+            {
+                BLdetallefactura.InsertarDetalleFactura(miDetalle);
+            }
+
+            MessageBox.Show("Guardado correctamente", "Detalle de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnEliminarFila_Click(object sender, EventArgs e)
+        {
+            //RECORREMOS LOS ELEMENTOS GUARDADOS EN LA LISTA
+            for (int i = 0; i < misDetallesFactura.Count; i++)
+            {
+                //COMPROBAMOS QUE LA FILA SELECCIONADA ES IGUAL AL DE LA LISTA
+                if (i == fila)
+                {
+                    misDetallesFactura.RemoveAt(fila);
+                }
+
+                //ACTUALIZAMOS LA LISTA Y EL DATAGRIDVIEW
+                dgv.DataSource = null;
+                dgv.DataSource = misDetallesFactura;
+            }
+        }
+
+
+        private void dgv_Click(object sender, EventArgs e)
+        {
+            //NUMERO DE FILA EN EL DATAGRIDVIEW
+            fila = dgv.CurrentRow.Index;
+
+            lblFila.Text = "Fila: " + fila.ToString();
+        }
+
+    }

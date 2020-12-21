@@ -10,7 +10,6 @@ namespace Presentacion
     public partial class FormCompras : Form
     {
         private List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
-        //private ENTCompraDetalle Registros = new ENTCompraDetalle();
 
         private int vidProveedor, vidProducto;
         private decimal TotalFactura;
@@ -154,13 +153,33 @@ namespace Presentacion
 
                     BLCompraDetalle.InsertCompraDetalle(Registros);
 
+                //GUARDAR EN KARDEX
+                ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registros.IDProducto);
+                    float Existencia = miKardex.Existencia;
+                    decimal Saldo = miKardex.Saldo;
+                    decimal CostoPromedio = miKardex.CostoPromedio;
+
+                    //GRABAR EN KARDEX
+                    ENTKardex kardex = new ENTKardex();
+                    kardex.Fecha = FechaDateTimePicker.Value;
+                    kardex.Concepto = "CO-" + IDCompra;
+                    kardex.Entrada = Registros.Cantidad;
+                    kardex.Existencia = Existencia + Registros.Cantidad;
+                    kardex.CostoUnitario = Registros.CostoUnitario;
+                    kardex.Debe = Convert.ToDecimal(kardex.Entrada) * kardex.CostoUnitario;
+                    kardex.Saldo = Saldo + kardex.Debe;
+                    kardex.CostoPromedio = kardex.Saldo / (decimal)kardex.Existencia;
+                    kardex.IDProducto = Registros.IDProducto;
+
+                    BLKardex.InsertKardex(kardex);
+
+
+
+                    
+
+
                 }
 
-                //GUARDAR EN KARDEX
-                //ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(RegistrosCompras.IDProducto);
-                //    miKardex.Fecha = FechaDateTimePicker.Value;
-                //    miKardex.Concepto = "COMPRA";
-                //    miKardex.Existencia = miKardex.Existencia;
 
                 // ACTUALIZAR LA TABLA PRODUCTOS
 

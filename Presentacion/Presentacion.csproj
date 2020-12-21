@@ -149,6 +149,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DetalleFactura.txt" />
     <Content Include="Notas.txt" />
     <None Include="Resources\rebaja.png" />
   </ItemGroup>

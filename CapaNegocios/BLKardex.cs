@@ -20,6 +20,10 @@ namespace CapaNegocios
             CADKardex.InsertKardex(k);
         }
 
+        public static Object SelectKardex(int IDProducto)
+        {
+            return CADKardex.SelectKardex(IDProducto);
+        }
         public static int SelectIDKardexByIDProducto(int IDProducto)
         {
             return CADKardex.SelectIDKardexByIDProducto(IDProducto);
