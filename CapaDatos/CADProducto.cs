@@ -35,5 +35,10 @@ namespace CapaDatos
                 p.IDPresentacion, 
                 p.IDProducto);
         }
+
+        public static void UpdatePrecioProductoByIDProducto(float Cantidad, decimal Precio, int IDProducto)
+        {
+            adaptador.UpdatePrecioProductoByIDProducto(Cantidad, Precio, IDProducto);
+        }
     }
 }

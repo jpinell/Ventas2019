@@ -19,5 +19,10 @@ namespace CapaNegocios
         {
             return CADProducto.InsertProductoGetIDProducto(p);
         }
+
+        public static void UpdatePrecioProductoByIDProducto(float Cantidad, decimal Precio, int IDProducto)
+        {
+            CADProducto.UpdatePrecioProductoByIDProducto(Cantidad, Precio, IDProducto);
+        }
     }
 }

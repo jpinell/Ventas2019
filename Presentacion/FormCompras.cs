@@ -124,7 +124,6 @@ namespace Presentacion
             CargarProductos();
         }
 
-
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             // GUARDAR EN COMPRAS Y COMPRAS DETALLES
@@ -153,8 +152,8 @@ namespace Presentacion
 
                     BLCompraDetalle.InsertCompraDetalle(Registros);
 
-                //GUARDAR EN KARDEX
-                ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registros.IDProducto);
+                    //GUARDAR EN KARDEX
+                    ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registros.IDProducto);
                     float Existencia = miKardex.Existencia;
                     decimal Saldo = miKardex.Saldo;
                     decimal CostoPromedio = miKardex.CostoPromedio;
@@ -173,15 +172,12 @@ namespace Presentacion
 
                     BLKardex.InsertKardex(kardex);
 
+                    //Obtiene un último costo para agregarlo al precio del producto
+                    decimal UltimoCosto = BLKardex.GetUltimoCosto(Registros.IDProducto);
 
-
-                    
-
-
+                    // ACTUALIZAR LA TABLA PRODUCTOS
+                    BLProducto.UpdatePrecioProductoByIDProducto(kardex.Existencia, UltimoCosto, kardex.IDProducto);
                 }
-
-
-                // ACTUALIZAR LA TABLA PRODUCTOS
 
                 scope.Complete();
 
@@ -240,13 +236,13 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            if (DescripcionTextBox.Text == string.Empty)
-            {
-                errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
-                DescripcionTextBox.Focus();
-                return false;
-            }
-            errorProvider1.Clear();
+            //if (DescripcionTextBox.Text == string.Empty)
+            //{
+            //    errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
+            //    DescripcionTextBox.Focus();
+            //    return false;
+            //}
+            //errorProvider1.Clear();
 
             if (CostoUnitarioTextBox.Text == string.Empty)
             {

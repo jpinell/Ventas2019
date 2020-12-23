@@ -56,7 +56,7 @@ namespace Presentacion
         private void FormatoColumnas()
         {
             KardexDataGridView.Columns["IDKardex"].Visible = false;
-            KardexDataGridView.Columns["IDProducto"].Visible = false;
+            //KardexDataGridView.Columns["IDProducto"].Visible = false;
 
             KardexDataGridView.Columns["Fecha"].DefaultCellStyle.Format = "d";
 

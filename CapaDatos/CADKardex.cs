@@ -65,5 +65,10 @@ namespace CapaDatos
 
             return miKardex;
         }
+
+        public static decimal GetUltimoCosto(int IDProducto)
+        {
+            return (decimal)adaptador.GetUltimoCosto(IDProducto);
+        }
     }
 }
