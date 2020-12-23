@@ -48,6 +48,9 @@
     <Compile Include="CADPresentacion.cs" />
     <Compile Include="CADProducto.cs" />
     <Compile Include="CADProveedor.cs" />
+    <Compile Include="ConjuntoDatos.cs">
+      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ConjuntoDatos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

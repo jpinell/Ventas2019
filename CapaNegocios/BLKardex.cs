@@ -33,5 +33,10 @@ namespace CapaNegocios
         {
             return CADKardex.SelectKardexByIDProducto(vidProducto);
         }
+
+        public static decimal GetUltimoCosto(int IDProducto)
+        {
+            return CADKardex.GetUltimoCosto(IDProducto);
+        }
     }
 }
