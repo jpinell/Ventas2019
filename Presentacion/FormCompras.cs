@@ -2,6 +2,7 @@
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -11,7 +12,7 @@ namespace Presentacion
     {
         private List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
 
-        private int vidProveedor, vidProducto;
+        private int vidProveedor, vidProducto, IDCompra;
         private decimal TotalFactura;
 
         public FormCompras()
@@ -126,7 +127,7 @@ namespace Presentacion
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            // GUARDAR EN COMPRAS Y COMPRAS DETALLES
+            // OBTENEMOS LOS DATOS PARA GUARDARLOS EN LA TABLA COMPRAS
             ENTCompra compra = new ENTCompra();
             compra.Fecha = FechaDateTimePicker.Value;
             compra.IDProveedor = vidProveedor;
@@ -135,7 +136,20 @@ namespace Presentacion
             using (var scope = new TransactionScope())
             {
                 //INSERTA LA COMPRA Y RETORNA EL ID
-                int IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
+                try
+                {
+                    IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Message.Contains("IX_Compras"))
+                    {
+                        errorProvider1.SetError(FacturaTextBox, "Número de Factura ya Existe...!");
+                        FacturaTextBox.Focus();
+                        return;
+                    }
+                    errorProvider1.Clear();
+                }
 
                 //RECORRE EL DATAGRID Y LO INSERTA EN LA TABLA COMPRADETALLE
                 ENTCompraDetalle Registros = new ENTCompraDetalle();
