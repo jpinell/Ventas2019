@@ -49,6 +49,8 @@
     <Compile Include="ENTPresentacion.cs" />
     <Compile Include="ENTProducto.cs" />
     <Compile Include="ENTProveedor.cs" />
+    <Compile Include="ENTVenta.cs" />
+    <Compile Include="ENTVentaDetalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

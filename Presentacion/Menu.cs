@@ -121,6 +121,7 @@ namespace Presentacion
         private void VentasButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
+            OpenChildForm(new FormVentas());
         }
 
         private void KardexButton_Click(object sender, EventArgs e)

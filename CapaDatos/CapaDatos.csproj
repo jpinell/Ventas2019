@@ -48,6 +48,8 @@
     <Compile Include="CADPresentacion.cs" />
     <Compile Include="CADProducto.cs" />
     <Compile Include="CADProveedor.cs" />
+    <Compile Include="CADVenta.cs" />
+    <Compile Include="CADVentaDetalle.cs" />
     <Compile Include="ConjuntoDatos.cs">
       <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
     </Compile>
