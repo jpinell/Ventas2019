@@ -10,7 +10,7 @@ namespace Presentacion
 {
     public partial class FormVentas : Form
     {
-        private List<ENTVentaDetalle> misDetalles = new List<ENTVentaDetalle>();
+        private readonly List<ENTVentaDetalle> misDetalles = new List<ENTVentaDetalle>();
 
         private int vidProducto, IDVenta;
 
@@ -41,14 +41,19 @@ namespace Presentacion
 
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-            if (!ValidarCampos()) return;
+            if (!ValidarCampos())
             {
-                ENTVentaDetalle miDetalle = new ENTVentaDetalle();
+                return;
+            }
 
-                miDetalle.Cantidad = float.Parse(CantidadTextBox.Text);
-                miDetalle.Precio = Convert.ToDecimal(PrecioTextBox.Text);
-                miDetalle.Descripcion = DescripcionTextBox.Text;
-                miDetalle.IDProducto = vidProducto;
+            {
+                ENTVentaDetalle miDetalle = new ENTVentaDetalle
+                {
+                    Cantidad = float.Parse(CantidadTextBox.Text),
+                    Precio = Convert.ToDecimal(PrecioTextBox.Text),
+                    Descripcion = DescripcionTextBox.Text,
+                    IDProducto = vidProducto
+                };
                 misDetalles.Add(miDetalle);
 
                 CargarDatos();
@@ -100,13 +105,25 @@ namespace Presentacion
             try
             {
                 vidProducto = (int)ProductoComboBox.SelectedValue;
-                DescripcionTextBox.Text = BLProducto.GetDescripcionByIDProducto(vidProducto);
-                ENTProducto producto = new ENTProducto();
-                // TODO: REVISAR ESTO
+
+                CalcularPrecioVenta();
             }
             catch (Exception)
             {
             }
+        }
+
+        private void CalcularPrecioVenta()
+        {
+            ENTProducto producto = BLProducto.SelectProductoByIDProducto(vidProducto);
+            int Porcentaje = (int)PorcentajeVentaNUD.Value;
+            decimal Costo, Precio;
+            ExistenciasTextBox.Text = string.Format("{0:N2}", producto.Cantidad);
+            DescripcionTextBox.Text = producto.Descripcion;
+            CostoTextBox.Text = string.Format("{0:N2}", producto.Precio);
+            Costo = Convert.ToDecimal(CostoTextBox.Text);
+            Precio = Costo + decimal.Multiply(Porcentaje, Costo) / 100;
+            PrecioTextBox.Text = string.Format("{0:N2}", Precio);
         }
 
         private void AbrirProductosButton_Click(object sender, EventArgs e)
@@ -123,16 +140,18 @@ namespace Presentacion
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             // OBTENEMOS LOS DATOS PARA GUARDARLOS EN LA TABLA COMPRAS
-            ENTCompra venta = new ENTCompra();
-            venta.Fecha = FechaDateTimePicker.Value;
-            venta.NoFactura = FacturaTextBox.Text;
+            ENTVenta venta = new ENTVenta
+            {
+                Fecha = FechaDateTimePicker.Value,
+                NoFactura = FacturaTextBox.Text
+            };
 
-            using (var scope = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
                 //INSERTA LA COMPRA Y RETORNA EL ID
                 try
                 {
-                    IDVenta = BLCompra.InsertComprasGetIDCompra(venta);
+                    IDVenta = BLVenta.InsertVentasGetIDVenta(venta);
                 }
                 catch (SqlException ex)
                 {
@@ -167,35 +186,46 @@ namespace Presentacion
                     decimal CostoPromedio = miKardex.CostoPromedio;
 
                     //GRABAR EN KARDEX
-                    ENTKardex kardex = new ENTKardex();
-                    kardex.Fecha = FechaDateTimePicker.Value;
-                    kardex.Concepto = "VE-" + IDVenta;
-                    kardex.Salida = Registros.Cantidad;
-                    kardex.Existencia = Existencia - Registros.Cantidad;
+                    ENTKardex kardex = new ENTKardex
+                    {
+                        Fecha = FechaDateTimePicker.Value,
+                        Concepto = "VE-" + IDVenta,
+                        Salida = Registros.Cantidad,
+                        Existencia = Existencia - Registros.Cantidad
+                    };
                     //kardex.CostoUnitario = Registros.CostoUnitario; //POR AQUI
                     kardex.Haber = Convert.ToDecimal(kardex.Salida) * CostoPromedio;
                     kardex.Saldo = Saldo - kardex.Haber;
-                    kardex.CostoPromedio = kardex.Saldo / (decimal)kardex.Existencia;
+                    try
+                    {
+                        kardex.CostoPromedio = kardex.Saldo / (decimal)kardex.Existencia;
+                    }
+                    catch (DivideByZeroException ex)
+                    {
+                        kardex.CostoPromedio = 0;
+                    }
+
                     kardex.IDProducto = Registros.IDProducto;
 
                     BLKardex.InsertKardex(kardex);
 
-                    //Obtiene un último costo para agregarlo al precio del producto
-                    decimal UltimoCosto = BLKardex.GetUltimoCosto(Registros.IDProducto);
+                    ////Obtiene un último costo para agregarlo al precio del producto
+                    //decimal UltimoCosto = BLKardex.GetUltimoCosto(Registros.IDProducto);
 
-                    // ACTUALIZAR LA TABLA PRODUCTOS******************************
-                    BLProducto.UpdatePrecioProductoByIDProducto(kardex.Existencia, UltimoCosto, kardex.IDProducto);
+                    // ACTUALIZAR LA TABLA PRODUCTOS
+                    BLProducto.UpdateCantidadVenta(kardex.Existencia, kardex.IDProducto);
                 }
 
                 scope.Complete();
 
-                MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDVenta),
+                MessageBox.Show(string.Format("La venta: {0}, fue grabada de forma exitosa", IDVenta),
                 "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private bool ValidarCampos()
         {
+
             if (FacturaTextBox.Text == string.Empty)
             {
                 errorProvider1.SetError(FacturaTextBox, "Ingrese el Número de la Factura");
@@ -219,6 +249,13 @@ namespace Presentacion
                 return false;
             }
             errorProvider1.Clear();
+            float Existencias = float.Parse(ExistenciasTextBox.Text);
+            if(Existencias < cantidad)
+            {
+                errorProvider1.SetError(ExistenciasTextBox, "No hay productos suficientes para esta venta");
+                ExistenciasTextBox.Focus();
+                return false;
+            }
 
             if (cantidad <= 0)
             {
@@ -236,13 +273,13 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            //if (DescripcionTextBox.Text == string.Empty)
-            //{
-            //    errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
-            //    DescripcionTextBox.Focus();
-            //    return false;
-            //}
-            //errorProvider1.Clear();
+            if (DescripcionTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
+                DescripcionTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
 
             if (PrecioTextBox.Text == string.Empty)
             {
@@ -269,6 +306,11 @@ namespace Presentacion
             errorProvider1.Clear();
 
             return true;
+        }
+
+        private void PorcentajeVentaNUD_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioVenta();
         }
 
         private void FormVentas_FormClosing(object sender, FormClosingEventArgs e)

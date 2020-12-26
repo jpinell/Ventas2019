@@ -204,7 +204,7 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            if (cantidad <= 0)
+            if (cantidad < 0)
             {
                 errorProvider1.SetError(CantidadTextBox, "Debe ingresar un valor mayor a cero");
                 CantidadTextBox.Focus();
@@ -236,7 +236,7 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            if (costo <= 0)
+            if (costo < 0)
             {
                 errorProvider1.SetError(PrecioTextBox, "Debe ingresar un valor mayor a cero");
                 PrecioTextBox.Focus();

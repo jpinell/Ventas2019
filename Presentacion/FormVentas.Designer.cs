@@ -52,16 +52,23 @@ namespace Presentacion
             this.GuardarButton = new FontAwesome.Sharp.IconButton();
             this.CerrarPictureBox = new FontAwesome.Sharp.IconPictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.CostoTextBox = new System.Windows.Forms.TextBox();
+            this.PorcentajeVentaNUD = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.ExistenciasTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PorcentajeVentaNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // TotalFacturaTextBox
             // 
             this.TotalFacturaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalFacturaTextBox.ForeColor = System.Drawing.Color.Maroon;
-            this.TotalFacturaTextBox.Location = new System.Drawing.Point(816, 208);
+            this.TotalFacturaTextBox.Location = new System.Drawing.Point(889, 208);
             this.TotalFacturaTextBox.Name = "TotalFacturaTextBox";
             this.TotalFacturaTextBox.Size = new System.Drawing.Size(115, 26);
             this.TotalFacturaTextBox.TabIndex = 47;
@@ -71,7 +78,7 @@ namespace Presentacion
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(648, 211);
+            this.label8.Location = new System.Drawing.Point(721, 211);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(162, 20);
             this.label8.TabIndex = 46;
@@ -113,7 +120,7 @@ namespace Presentacion
             this.DescripcionTextBox.Location = new System.Drawing.Point(86, 168);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
             this.DescripcionTextBox.ReadOnly = true;
-            this.DescripcionTextBox.Size = new System.Drawing.Size(485, 20);
+            this.DescripcionTextBox.Size = new System.Drawing.Size(515, 20);
             this.DescripcionTextBox.TabIndex = 37;
             // 
             // label9
@@ -294,12 +301,91 @@ namespace Presentacion
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(395, 133);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Costo del Producto:";
+            // 
+            // CostoTextBox
+            // 
+            this.CostoTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.CostoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CostoTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.CostoTextBox.Location = new System.Drawing.Point(501, 128);
+            this.CostoTextBox.Name = "CostoTextBox";
+            this.CostoTextBox.ReadOnly = true;
+            this.CostoTextBox.Size = new System.Drawing.Size(100, 23);
+            this.CostoTextBox.TabIndex = 49;
+            this.CostoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PorcentajeVentaNUD
+            // 
+            this.PorcentajeVentaNUD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PorcentajeVentaNUD.Location = new System.Drawing.Point(677, 130);
+            this.PorcentajeVentaNUD.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.PorcentajeVentaNUD.Name = "PorcentajeVentaNUD";
+            this.PorcentajeVentaNUD.Size = new System.Drawing.Size(56, 20);
+            this.PorcentajeVentaNUD.TabIndex = 50;
+            this.PorcentajeVentaNUD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PorcentajeVentaNUD.ThousandsSeparator = true;
+            this.PorcentajeVentaNUD.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.PorcentajeVentaNUD.ValueChanged += new System.EventHandler(this.PorcentajeVentaNUD_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(622, 132);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 13);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "% Venta:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(622, 171);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(94, 17);
+            this.label12.TabIndex = 48;
+            this.label12.Text = "Existencias:";
+            // 
+            // ExistenciasTextBox
+            // 
+            this.ExistenciasTextBox.BackColor = System.Drawing.Color.White;
+            this.ExistenciasTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExistenciasTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.ExistenciasTextBox.Location = new System.Drawing.Point(722, 165);
+            this.ExistenciasTextBox.Name = "ExistenciasTextBox";
+            this.ExistenciasTextBox.ReadOnly = true;
+            this.ExistenciasTextBox.Size = new System.Drawing.Size(88, 26);
+            this.ExistenciasTextBox.TabIndex = 47;
+            this.ExistenciasTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // FormVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1016, 583);
+            this.Controls.Add(this.PorcentajeVentaNUD);
+            this.Controls.Add(this.CostoTextBox);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ExistenciasTextBox);
             this.Controls.Add(this.TotalFacturaTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.AbrirProductosButton);
@@ -329,6 +415,7 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CerrarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PorcentajeVentaNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,5 +445,11 @@ namespace Presentacion
         private FontAwesome.Sharp.IconPictureBox CerrarPictureBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox CostoTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown PorcentajeVentaNUD;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox ExistenciasTextBox;
     }
 }
