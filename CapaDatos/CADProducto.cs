@@ -67,5 +67,10 @@ namespace CapaDatos
 
             return miProducto;
         }
+
+        public static void UpdateCantidadVenta(float Cantidad, int IDProducto)
+        {
+            adaptador.UpdateCantidadVenta(Cantidad, IDProducto);
+        }
     }
 }

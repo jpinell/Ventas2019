@@ -251,13 +251,13 @@ namespace Presentacion
             }
             errorProvider1.Clear();
 
-            //if (DescripcionTextBox.Text == string.Empty)
-            //{
-            //    errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
-            //    DescripcionTextBox.Focus();
-            //    return false;
-            //}
-            //errorProvider1.Clear();
+            if (DescripcionTextBox.Text == string.Empty)
+            {
+                errorProvider1.SetError(DescripcionTextBox, "Ingrese la descripción del producto");
+                DescripcionTextBox.Focus();
+                return false;
+            }
+            errorProvider1.Clear();
 
             if (CostoUnitarioTextBox.Text == string.Empty)
             {
