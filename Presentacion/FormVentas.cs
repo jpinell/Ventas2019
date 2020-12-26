@@ -8,21 +8,21 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormCompras : Form
+    public partial class FormVentas : Form
     {
-        private List<ENTCompraDetalle> misDetalles = new List<ENTCompraDetalle>();
+        private List<ENTVentaDetalle> misDetalles = new List<ENTVentaDetalle>();
 
-        private int vidProveedor, vidProducto, IDCompra;
+        private int vidProducto, IDVenta;
+
         private decimal TotalFactura;
 
-        public FormCompras()
+        public FormVentas()
         {
             InitializeComponent();
         }
 
-        private void FormCompras_Load(object sender, EventArgs e)
+        private void FormVentas_Load(object sender, EventArgs e)
         {
-            CargarProveedores();
             CargarProductos();
         }
 
@@ -34,14 +34,6 @@ namespace Presentacion
             ProductoComboBox.SelectedIndex = -1;
         }
 
-        private void CargarProveedores()
-        {
-            ProveedorComboBox.DataSource = BLProveedor.GetData();
-            ProveedorComboBox.DisplayMember = "Empresa";
-            ProveedorComboBox.ValueMember = "IDProveedor";
-            ProveedorComboBox.SelectedIndex = -1;
-        }
-
         private void CerrarPictureBox_Click(object sender, EventArgs e)
         {
             Close();
@@ -51,10 +43,10 @@ namespace Presentacion
         {
             if (!ValidarCampos()) return;
             {
-                ENTCompraDetalle miDetalle = new ENTCompraDetalle();
+                ENTVentaDetalle miDetalle = new ENTVentaDetalle();
 
                 miDetalle.Cantidad = float.Parse(CantidadTextBox.Text);
-                miDetalle.CostoUnitario = Convert.ToDecimal(CostoUnitarioTextBox.Text);
+                miDetalle.Precio = Convert.ToDecimal(PrecioTextBox.Text);
                 miDetalle.Descripcion = DescripcionTextBox.Text;
                 miDetalle.IDProducto = vidProducto;
                 misDetalles.Add(miDetalle);
@@ -64,7 +56,7 @@ namespace Presentacion
                 CantidadTextBox.Text = string.Empty;
                 ProductoComboBox.SelectedIndex = -1;
                 DescripcionTextBox.Text = string.Empty;
-                CostoUnitarioTextBox.Text = string.Empty;
+                PrecioTextBox.Text = string.Empty;
                 CantidadTextBox.Focus();
             }
         }
@@ -76,7 +68,7 @@ namespace Presentacion
 
             TotalFactura = 0;
             //Actualiza los totales
-            foreach (ENTCompraDetalle cd in misDetalles)
+            foreach (ENTVentaDetalle cd in misDetalles)
             {
                 TotalFactura += cd.SubTotal;
             }
@@ -88,14 +80,14 @@ namespace Presentacion
 
         private void FormatoDatos()
         {
-            DetallesDataGridView.Columns["IDCompraDetalle"].Visible = false;
-            DetallesDataGridView.Columns["IDCompra"].Visible = false;
+            DetallesDataGridView.Columns["IDVentaDetalle"].Visible = false;
+            DetallesDataGridView.Columns["IDVenta"].Visible = false;
 
             DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
             DetallesDataGridView.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            DetallesDataGridView.Columns["CostoUnitario"].DefaultCellStyle.Format = "N2";
-            DetallesDataGridView.Columns["CostoUnitario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            DetallesDataGridView.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            DetallesDataGridView.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             DetallesDataGridView.Columns["SubTotal"].DefaultCellStyle.Format = "N2";
             DetallesDataGridView.Columns["SubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -109,6 +101,8 @@ namespace Presentacion
             {
                 vidProducto = (int)ProductoComboBox.SelectedValue;
                 DescripcionTextBox.Text = BLProducto.GetDescripcionByIDProducto(vidProducto);
+                ENTProducto producto = new ENTProducto();
+                // TODO: REVISAR ESTO
             }
             catch (Exception)
             {
@@ -129,21 +123,20 @@ namespace Presentacion
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             // OBTENEMOS LOS DATOS PARA GUARDARLOS EN LA TABLA COMPRAS
-            ENTCompra compra = new ENTCompra();
-            compra.Fecha = FechaDateTimePicker.Value;
-            compra.IDProveedor = vidProveedor;
-            compra.NoFactura = FacturaTextBox.Text;
+            ENTCompra venta = new ENTCompra();
+            venta.Fecha = FechaDateTimePicker.Value;
+            venta.NoFactura = FacturaTextBox.Text;
 
             using (var scope = new TransactionScope())
             {
                 //INSERTA LA COMPRA Y RETORNA EL ID
                 try
                 {
-                    IDCompra = BLCompra.InsertComprasGetIDCompra(compra);
+                    IDVenta = BLCompra.InsertComprasGetIDCompra(venta);
                 }
                 catch (SqlException ex)
                 {
-                    if (ex.Message.Contains("IX_Compras"))
+                    if (ex.Message.Contains("IX_Ventas"))
                     {
                         errorProvider1.SetError(FacturaTextBox, "Número de Factura ya Existe...!");
                         FacturaTextBox.Focus();
@@ -153,19 +146,19 @@ namespace Presentacion
                 }
 
                 //RECORRE EL DATAGRID Y LO INSERTA EN LA TABLA COMPRADETALLE
-                ENTCompraDetalle Registros = new ENTCompraDetalle();
+                ENTVentaDetalle Registros = new ENTVentaDetalle();
 
                 foreach (DataGridViewRow filas in DetallesDataGridView.Rows)
                 {
                     Registros.Cantidad = float.Parse(filas.Cells["Cantidad"].Value.ToString());
-                    Registros.CostoUnitario = decimal.Parse(filas.Cells["CostoUnitario"].Value.ToString());
+                    Registros.Precio = decimal.Parse(filas.Cells["Precio"].Value.ToString());
                     Registros.Descripcion = filas.Cells["Descripcion"].Value.ToString();
                     Registros.IDProducto = int.Parse(filas.Cells["IDProducto"].Value.ToString());
-                    Registros.IDCompra = IDCompra;
+                    Registros.IDVenta = IDVenta;
 
                     misDetalles.Add(Registros);
 
-                    BLCompraDetalle.InsertCompraDetalle(Registros);
+                    BLVentaDetalle.InsertVentaDetalle(Registros);
 
                     //GUARDAR EN KARDEX
                     ENTKardex miKardex = BLKardex.SelectKardexByIDProducto(Registros.IDProducto);
@@ -176,12 +169,12 @@ namespace Presentacion
                     //GRABAR EN KARDEX
                     ENTKardex kardex = new ENTKardex();
                     kardex.Fecha = FechaDateTimePicker.Value;
-                    kardex.Concepto = "CO-" + IDCompra;
-                    kardex.Entrada = Registros.Cantidad;
-                    kardex.Existencia = Existencia + Registros.Cantidad;
-                    kardex.CostoUnitario = Registros.CostoUnitario;
-                    kardex.Debe = Convert.ToDecimal(kardex.Entrada) * kardex.CostoUnitario;
-                    kardex.Saldo = Saldo + kardex.Debe;
+                    kardex.Concepto = "VE-" + IDVenta;
+                    kardex.Salida = Registros.Cantidad;
+                    kardex.Existencia = Existencia - Registros.Cantidad;
+                    //kardex.CostoUnitario = Registros.CostoUnitario; //POR AQUI
+                    kardex.Haber = Convert.ToDecimal(kardex.Salida) * CostoPromedio;
+                    kardex.Saldo = Saldo - kardex.Haber;
                     kardex.CostoPromedio = kardex.Saldo / (decimal)kardex.Existencia;
                     kardex.IDProducto = Registros.IDProducto;
 
@@ -190,27 +183,19 @@ namespace Presentacion
                     //Obtiene un último costo para agregarlo al precio del producto
                     decimal UltimoCosto = BLKardex.GetUltimoCosto(Registros.IDProducto);
 
-                    // ACTUALIZAR LA TABLA PRODUCTOS
+                    // ACTUALIZAR LA TABLA PRODUCTOS******************************
                     BLProducto.UpdatePrecioProductoByIDProducto(kardex.Existencia, UltimoCosto, kardex.IDProducto);
                 }
 
                 scope.Complete();
 
-                MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDCompra),
+                MessageBox.Show(string.Format("La compra: {0}, fue grabada de forma exitosa", IDVenta),
                 "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private bool ValidarCampos()
         {
-            if (ProveedorComboBox.SelectedIndex == -1)
-            {
-                errorProvider1.SetError(ProveedorComboBox, "Seleccione un Proveedor");
-                ProveedorComboBox.Focus();
-                return false;
-            }
-            errorProvider1.Clear();
-
             if (FacturaTextBox.Text == string.Empty)
             {
                 errorProvider1.SetError(FacturaTextBox, "Ingrese el Número de la Factura");
@@ -259,26 +244,26 @@ namespace Presentacion
             //}
             //errorProvider1.Clear();
 
-            if (CostoUnitarioTextBox.Text == string.Empty)
+            if (PrecioTextBox.Text == string.Empty)
             {
-                errorProvider1.SetError(CostoUnitarioTextBox, "Ingrese el Costo del Producto");
-                CostoUnitarioTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Ingrese el Costo del Producto");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();
 
-            if (!decimal.TryParse(CostoUnitarioTextBox.Text, out decimal costo))
+            if (!decimal.TryParse(PrecioTextBox.Text, out decimal precio))
             {
-                errorProvider1.SetError(CostoUnitarioTextBox, "Debe ingresar un valor numérico entero");
-                CostoUnitarioTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Debe ingresar un valor numérico entero");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();
 
-            if (costo <= 0)
+            if (precio <= 0)
             {
-                errorProvider1.SetError(CostoUnitarioTextBox, "Debe ingresar un valor mayor a cero");
-                CostoUnitarioTextBox.Focus();
+                errorProvider1.SetError(PrecioTextBox, "Debe ingresar un valor mayor a cero");
+                PrecioTextBox.Focus();
                 return false;
             }
             errorProvider1.Clear();
@@ -286,12 +271,12 @@ namespace Presentacion
             return true;
         }
 
-        private void FormCompras_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormVentas_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (misDetalles.Count != 0)
             {
-                DialogResult rta = MessageBox.Show("¿Está seguro de cerrar el formulario de compras" +
-                " y perder los registros ingresados?", "C O M P R A S", MessageBoxButtons.YesNo,
+                DialogResult rta = MessageBox.Show("¿Está seguro de cerrar el formulario de ventas" +
+                " y perder los registros ingresados?", "V E N T A S", MessageBoxButtons.YesNo,
                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (rta == DialogResult.No)
                 {
@@ -299,37 +284,5 @@ namespace Presentacion
                 }
             }
         }
-
-        private void ProveedorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                vidProveedor = (int)ProveedorComboBox.SelectedValue;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        //ELIMINAR FILA
-        //RECORREMOS LOS ELEMENTOS GUARDADOS EN LA LISTA
-        //        for (int i = 0; i<misDetallesFactura.Count; i++)
-        //        {
-        //            //COMPROBAMOS QUE LA FILA SELECCIONADA ES IGUAL AL DE LA LISTA
-        //            if (i == fila)
-        //            {
-        //                misDetallesFactura.RemoveAt(fila);
-        //            }
-
-        ////ACTUALIZAMOS LA LISTA Y EL DATAGRIDVIEW
-        //dgv.DataSource = null;
-        //            dgv.DataSource = misDetallesFactura;
-        //        }
-
-        //FILA ACTUAL
-        //NUMERO DE FILA EN EL DATAGRIDVIEW
-        //fila = dgv.CurrentRow.Index;
-
-        //    lblFila.Text = "Fila: " + fila.ToString();
     }
 }

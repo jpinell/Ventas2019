@@ -196,9 +196,11 @@ namespace Presentacion
             // 
             // DescripcionTextBox
             // 
+            this.DescripcionTextBox.BackColor = System.Drawing.Color.White;
             this.DescripcionTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.DescripcionTextBox.Location = new System.Drawing.Point(94, 182);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
+            this.DescripcionTextBox.ReadOnly = true;
             this.DescripcionTextBox.Size = new System.Drawing.Size(485, 20);
             this.DescripcionTextBox.TabIndex = 12;
             // 

@@ -15,6 +15,11 @@ namespace CapaNegocios
             return CADProducto.GetData();
         }
 
+        public static string GetDescripcionByIDProducto(int IDProducto)
+        {
+            return CADProducto.GetDescripcionByIDProducto(IDProducto).ToString();
+        }
+
         public static int InsertProductoGetIDProducto(ENTProducto p)
         {
             return CADProducto.InsertProductoGetIDProducto(p);
@@ -23,6 +28,11 @@ namespace CapaNegocios
         public static void UpdatePrecioProductoByIDProducto(float Cantidad, decimal Precio, int IDProducto)
         {
             CADProducto.UpdatePrecioProductoByIDProducto(Cantidad, Precio, IDProducto);
+        }
+
+        public static ENTProducto SelectProductoByIDProducto(int IDProducto)
+        {
+            return CADProducto.SelectProductoByIDProducto(IDProducto);
         }
     }
 }
